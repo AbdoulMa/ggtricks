@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of ggtricks is to create fun geom with grammar of graphics philosophy. 
+The goal of ggtricks is to create fun geom with the grammar of graphics philosophy. 
 
 ## Installation
 

@@ -6,7 +6,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of ggtricks is to create fun geom with grammar of graphics
+The goal of ggtricks is to create fun geom with the grammar of graphics
 philosophy.
 
 ## Installation
