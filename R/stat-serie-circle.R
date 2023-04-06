@@ -1,14 +1,4 @@
 
-generate_id <- function(group, id, max) max*group + id
-
-group_count <- function(x_discrete, x, y, group) {
-  if (x_discrete) {
-    return (tapply(y, group, sum, na.rm = T))
-  }
-  tapply(x, group, sum, na.rm = T)
-}
-
-
 #' @export
 StatSerieCircle <- ggplot2::ggproto("StatSerieCircle", ggplot2::Stat,
                            setup_params = function(data, params) {

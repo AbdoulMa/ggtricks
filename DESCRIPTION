@@ -15,4 +15,5 @@ Config/testthat/edition: 3
 URL: https://github.com/AbdoulMa/ggtricks
 BugReports: https://github.com/AbdoulMa/ggtricks/issues
 Imports: 
+    cli,
     ggplot2
