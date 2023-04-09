@@ -42,7 +42,7 @@ draw_panel_function = function(data, panel_scales, coord,
     gp = grid::gpar(
       col = colour,
       fill = fills,
-      lwd = linewidth * .pt,
+      lwd = linewidth,
       alpha = alpha
     )
   )
@@ -57,7 +57,7 @@ draw_panel_function = function(data, panel_scales, coord,
         default.units = "native",
         gp = grid::gpar(
           col = colour,
-          lwd = tick_lwd * .pt
+          lwd = tick_lwd
         )
       )
     },

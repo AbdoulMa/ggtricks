@@ -35,11 +35,13 @@ draw_panel_function = function(data, panel_scales, coord, r = .5) {
   )
 }
 
+#' @usage NULL
+#' @format NULL
 #' @export
 GeomSerieCircle <- ggplot2::ggproto("GeomSerieCircle", ggplot2::GeomPolygon,
                            draw_panel = draw_panel_function,
                            required_aes = c("x","y"),
-                           default_aes = ggplot2::aes(colour = NA, fill = NA, linewidth = 0.5, linetype = 1,
+                           default_aes = ggplot2::aes(colour = NA, fill = "black", linewidth = 0.5, linetype = 1,
                                              alpha = NA, subgroup = NULL),
                            rename_size = TRUE
 )
@@ -58,5 +60,28 @@ geom_serie_circle <-  function(mapping = NULL, data = NULL,
     show.legend =  show.legend,
     inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, angle = angle, r = r, ...)
+  )
+}
+
+# Serie Text ----
+#' @usage NULL
+#' @format NULL
+#' @export
+GeomSerieText <- ggplot2::ggproto("GeomSerieText", ggplot2::GeomText)
+
+#' @export
+geom_serie_text <-  function(mapping = NULL, data = NULL,
+                             position = "identity", show.legend = NA,
+                             na.rm = FALSE, inherit.aes = TRUE,
+                             ...) {
+  ggplot2::layer(
+    data = data,
+    mapping = mapping,
+    stat = StatSerieText,
+    geom = GeomSerieText,
+    position = position,
+    show.legend =  show.legend,
+    inherit.aes = inherit.aes,
+    params = list(na.rm = na.rm, ...)
   )
 }

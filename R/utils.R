@@ -1,4 +1,4 @@
-# Serie circle
+# Serie circle ----
 generate_id <- function(group, id, max) max*group + id
 
 group_count <- function(x_discrete, x, y, group) {
@@ -8,7 +8,17 @@ group_count <- function(x_discrete, x, y, group) {
   tapply(x, group, sum, na.rm = T)
 }
 
-# Pies and variants utils
+# Serie Text
+val_to_position <- function(val) {
+  if (val %% 1 == 0) {
+    return(( val - 1 ) + .5)
+  } else if (val %% 1 < .5 ) {
+    return(ceiling(val / .5) * .5)
+  }
+  floor(val / .5) * .5
+}
+
+# Pies and variants utils ----
 categorize <- function(data) {
   if (!is.factor(data$cat)) {
     data$cat <- factor(data$cat)
@@ -81,3 +91,23 @@ rescale <- function(x, to = c(0, 1), from = range(x, na.rm = TRUE, finite = TRUE
   }
   (x - from[1]) / diff(from) * diff(to) + to[1]
 }
+
+# Slice ----
+# Redefine methods
+angle_rotation_slice <- function(a, slice_position = "top") {
+  init.angle <- - a / 2
+  init.angle <- switch (slice_position,
+                        "right" = init.angle ,  # Case position "right"
+                        "top" = init.angle + 90,  # Case position "top"
+                        "left" = init.angle + 180,  # Case position "left"
+                        "bottom" = init.angle + 270,  # Case position "bottom"
+                        0
+  )
+  init.angle
+}
+
+t2xy_slice <- function(t, radius = .8, slice_angle = 180, x0 = 0, y0 = 0, init_angle = 0, slice_position = NA ) {
+  t2p <- slice_angle * t + init_angle * pi/180
+  list(x = x0 + radius * cos(t2p), y = y0 + radius * sin(t2p))
+}
+

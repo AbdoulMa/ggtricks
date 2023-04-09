@@ -1,4 +1,4 @@
-
+# Serie circle ----
 #' @export
 StatSerieCircle <- ggplot2::ggproto("StatSerieCircle", ggplot2::Stat,
                            setup_params = function(data, params) {
@@ -74,24 +74,6 @@ StatSerieCircle <- ggplot2::ggproto("StatSerieCircle", ggplot2::Stat,
                              # Convert angle from deg to rad
                              angle <- angle * pi / 180
 
-                             #
-
-                             #  Tidyverse Aproach
-                             # circle_data <- data |>
-                             #   dplyr::mutate(
-                             #     nb_circles = ifelse(x_discrete, y %/% 1, x %/% 1)
-                             #   ) |>
-                             #   dplyr::rowwise() |>
-                             #   dplyr::mutate(
-                             #     circles_centers = list(0:nb_circles),
-                             #     circles_values = list(c(rep(1, nb_circles), ifelse(x_discrete, y %% 1, x %% 1)))
-                             #   ) %>%
-                             #   tidyr::unnest_longer(c(circles_centers, circles_values)) |>
-                             #   dplyr::filter(circles_values != 0) |>
-                             #   mutate(
-                             #     id = dplyr::row_number()
-                             #   )
-                             # print(data)
                              # Base R Aprroach
                              circle_data <- data
                              # print(circle_data)
@@ -163,6 +145,62 @@ stat_serie_circle <- function(mapping = NULL, data = NULL, geom = "serie_circle"
     params = list(na.rm = na.rm,
                   angle = angle,
                   r = r,
+                  ...)
+  )
+}
+
+# Serie Text ----
+#' @usage NULL
+#' @format NULL
+ #' @export
+StatSerieText  <- ggplot2::ggproto("StatSerieText", ggplot2::Stat,
+                          compute_group = function(data, scales, flip = FALSE) {
+                            # angle takes the value defined in params
+                            x_class <- class(data$x)[1]
+                            y_class <- class(data$y)[1]
+
+                            x_discrete <- (x_class ==  "mapped_discrete" && y_class == "numeric")
+                            y_discrete <- (y_class == "mapped_discrete" && x_class == "numeric")
+                            classes_constraints <-  x_discrete ||  y_discrete
+
+                            if(!classes_constraints) {
+                              stop("There should be a discrete column and a numeric one")
+                            }
+
+
+                            val <- ifelse(x_discrete, data$y, data$x)
+                            val <- val_to_position(val)
+
+                            if (x_discrete) {
+                              return(data.frame(
+                                x = data$x,
+                                y = val + .35
+                              ))
+                            }
+                            data.frame(
+                              x = val + .5,
+                              y = data$y
+                            )
+                          },
+                          # Mandatory in data passed to Stat
+                          required_aes = c("x", "y")
+)
+
+
+#' @export
+stat_serie_text <- function(mapping = NULL, data = NULL, geom = "serie_text",
+                            position = "identity", show.legend = NA, na.rm = FALSE,
+                            inherit.aes = TRUE,
+                            ...) {
+  ggplot2::layer(
+    stat = StatSerieText,
+    geom = geom,
+    data = data,
+    mapping = mapping,
+    position = position,
+    show.legend = show.legend,
+    inherit.aes = inherit.aes,
+    params = list(na.rm = na.rm,
                   ...)
   )
 }
