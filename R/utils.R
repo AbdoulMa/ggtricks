@@ -37,13 +37,17 @@ pre_process_params <- function(data, params) {
       cli::cli_warn("Cateogry {.field {params$spotlight_cat}} is not present, we can't spotlight it.")
     }
     else {
-      cli::cli_warn("{.field splotlight_cat} used, {.field init_angle} & {.field spotlight_max} not used.")
+      if (params$init_angle != 0 || params$spotlight_max) {
+        cli::cli_warn("{.field splotlight_cat} used, {.field init_angle} & {.field spotlight_max} not used.")
+      }
     }
+  }
+  else if (is.null(params$spotlight_cat) && !is.null(params$spotlight_position) &&  !params$spotlight_max) {
+    cli::cli_warn(" No category or max to spotlight, so spotllight position is useless.")
   }
   else if (params$spotlight_max && params$init_angle != 0) {
     cli::cli_warn("You set {.field spotlight_max} so angle parameter is not used anymore.")
   }
-
   if (is.null(params$spotlight_position) || !params$spotlight_position %in% c("top", "right", "bottom", "left")) {
     params$spotlight_position <- "top"
     cli::cli_warn(c (
