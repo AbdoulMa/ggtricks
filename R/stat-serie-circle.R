@@ -13,19 +13,13 @@ StatSerieCircle <- ggplot2::ggproto("StatSerieCircle", ggplot2::Stat,
                              params$y_discrete <- (y_class == "mapped_discrete" && x_class == "numeric")
 
                              if(params$r > .5) {
-                               print("r should be <= .5")
+                               cli::cli_warn("r should be <= .5.")
                                params$r <- .5
                              }
                              params
                            },
                            setup_data = function(data, params) {
-                             # print("Call from setup data")
-                             # print(params)
-                             # print(data)
-
-                             # print(data)
                              count <- group_count(params$x_discrete, data$x, data$y, data$group)
-                             # print(count)
                              if (params$x_discrete) {
                                indexes <- Map(\(x) which(data$group == x)[1], x = seq_along(count))
                                indexes <- as.numeric(indexes)
@@ -37,8 +31,6 @@ StatSerieCircle <- ggplot2::ggproto("StatSerieCircle", ggplot2::Stat,
                                x_val <- count
                                y_val <- as.factor(indexes)
                              }
-                             # print("Indexes")
-                             # print(indexes)
                              df <-  data.frame(
                                x = x_val,
                                y = y_val,
@@ -63,20 +55,17 @@ StatSerieCircle <- ggplot2::ggproto("StatSerieCircle", ggplot2::Stat,
                              # Data from here is passed to compute_group
                            },
                            compute_group = function(data, scales, angle = 0, r = .5, x_discrete = T, y_discrete = F) {
-                             # angle takes the value defined in params
-                             # print("Call from compute group")
 
                              classes_constraints <-  x_discrete ||  y_discrete
 
                              if(!classes_constraints) {
-                               stop("There should be a discrete column and a numeric one")
+                               cli::cli_abort("There should be a discrete column and a numeric one.")
                              }
                              # Convert angle from deg to rad
                              angle <- angle * pi / 180
 
                              # Base R Aprroach
                              circle_data <- data
-                             # print(circle_data)
                              circle_data$nb_circles <- ifelse(x_discrete, circle_data$y %/% 1, circle_data$x %/% 1)
                              circle_data$circles_centers <- lapply(circle_data$nb_circles, \(x) 0:x)
                              circle_data$circles_values <- Map(\(X, Y) list(rep(1,X), Y%% 1), X = circle_data$nb_circles, Y = ifelse(x_discrete, circle_data$y, circle_data$x))
@@ -120,7 +109,6 @@ StatSerieCircle <- ggplot2::ggproto("StatSerieCircle", ggplot2::Stat,
                              )
                              # Data passed to geom (Must contain columns needed "required" in geom)
                              circle_data <- do.call(rbind, circle_data)
-                             # print(circle_data)
                              circle_data
                            },
                            # Mandatory in data passed to Stat
@@ -164,7 +152,7 @@ StatSerieText  <- ggplot2::ggproto("StatSerieText", ggplot2::Stat,
                             classes_constraints <-  x_discrete ||  y_discrete
 
                             if(!classes_constraints) {
-                              stop("There should be a discrete column and a numeric one")
+                              cli::cli_abort("There should be a discrete column and a numeric one.")
                             }
 
 

@@ -43,14 +43,14 @@ pre_process_params <- function(data, params) {
     }
   }
   else if (is.null(params$spotlight_cat) && !is.null(params$spotlight_position) &&  !params$spotlight_max) {
-    cli::cli_warn(" No category or max to spotlight, so spotllight position is useless.")
+    cli::cli_warn("No category or max to spotlight, so spotlight position is useless.")
   }
   else if (params$spotlight_max && params$init_angle != 0) {
     cli::cli_warn("You set {.field spotlight_max} so angle parameter is not used anymore.")
   }
   if (is.null(params$spotlight_position) || !params$spotlight_position %in% c("top", "right", "bottom", "left")) {
     params$spotlight_position <- "top"
-    cli::cli_warn(c (
+    cli::cli_warn(c(
       x = "You set an unknown {.field spotlight_position} : {params$spotlight_position}",
       i = "{.code top} is selected by default"
                      ))
