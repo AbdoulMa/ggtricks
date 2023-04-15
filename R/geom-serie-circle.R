@@ -1,5 +1,4 @@
 
-
 draw_panel_function = function(data, panel_scales, coord, r = .5) {
   max <- max(data$group, data$id)
   data$circle_id = generate_id(data$group, data$id, max)
@@ -35,40 +34,88 @@ draw_panel_function = function(data, panel_scales, coord, r = .5) {
   )
 }
 
-#' @usage NULL
-#' @format NULL
+#' @rdname geom_serie_circle
+#' #' @param x A vector mapping the abscissa (x) axis. Either a character vector
+#' when `x` is a numerical vector. Either a numerical vector when `y` is a character
+#' vector.
+#' @param y A vector mapping the ordinate (y) axis. Either a numerical vector
+#' when `x` is a character vector. And vice versa.
 #' @export
 GeomSerieCircle <- ggplot2::ggproto("GeomSerieCircle", ggplot2::GeomPolygon,
                            draw_panel = draw_panel_function,
                            required_aes = c("x","y"),
-                           default_aes = ggplot2::aes(colour = NA, fill = "black", linewidth = 0.5, linetype = 1,
+                           default_aes = ggplot2::aes(colour = NA, fill = "black", linewidth = 0.5,
                                              alpha = NA, subgroup = NULL),
                            rename_size = TRUE
 )
 
+#' Create serie of circles plot
+#'
+#' @description
+#' `geom_serie_circle()` can be used as an alternative for
+#' simple or multiple bar charts. It consists in using
+#' whole and fragments of circles to represent numerical values.
+#' As it draws circle, the geom should use with [ggplot2::coord_equal()]
+#' to maintain the "aspect ratio".
+#'
+#' @param mapping Set of aesthetic mappings created by `aes()` or
+#'   `aes_()`. If specified and `inherit.aes = TRUE` (the
+#'   default), it is combined with the default mapping at the top level of the
+#'   plot. You must supply `mapping` if there is no plot mapping.
+#' @param data to be displayed in this layer
+#' @param angle Circle drawing starting angle.
+#' @param r Circle radius, should be <= 0.5.
+#' @param color Color of circles/fragments of circles borders.
+#' @param  fill Color to fill circles/fragments of circles with. This parameter
+#' @param linewidth Size of circles/fragments of circles borders.
+#' can be used in  `aes` mapping or as  a global argument for all the circles.
+#' @param na.rm If `FALSE`, the default, missing values are removed with
+#'   a warning. If `TRUE`, missing values are silently removed.
+#' @param show.legend logical. Should this layer be included in the legends?
+#'   `NA`, the default, includes if any aesthetics are mapped.
+#'   `FALSE` never includes, and `TRUE` always includes.
+#'   It can also be a named logical vector to finely select the aesthetics to
+#'   display.
+#' @param inherit.aes If `FALSE`, overrides the default aesthetics,
+#'   rather than combining with them.
+#' @param ... other arguments passed on to `layer()`.
+#'
+#' @examples
+#' my_df <- data.frame(cat= c("Apple", "Banana", "Pineapple"), val = c(2.65, 4.5, 6.25))
+#'my_df |>
+#'  ggplot2::ggplot() +
+#'  geom_serie_circle(ggplot2::aes(cat, val)) +
+#'  ggplot2::coord_equal()
+#'
 #' @export
 geom_serie_circle <-  function(mapping = NULL, data = NULL,
-                               position = "identity", show.legend = NA,
+                               show.legend = NA,
                                na.rm = FALSE, inherit.aes = TRUE,
-                               angle = 0, r = .5, ...) {
+                               angle = 0, r = .5, color = NA, fill = "black", linewidth = 0.5, ...) {
   ggplot2::layer(
     data = data,
     mapping = mapping,
     stat = StatSerieCircle,
     geom = GeomSerieCircle,
-    position = position,
+    position = "identity",
     show.legend =  show.legend,
     inherit.aes = inherit.aes,
-    params = list(na.rm = na.rm, angle = angle, r = r, ...)
+    params = list(na.rm = na.rm, angle = angle, r = r, color = color, fill = fill, linewidth = linewidth, ...)
   )
 }
 
 # Serie Text ----
-#' @usage NULL
-#' @format NULL
+#' @rdname geom_serie_text
 #' @export
 GeomSerieText <- ggplot2::ggproto("GeomSerieText", ggplot2::GeomText)
 
+#' Create serie of circle label Text
+#'
+#' @description
+#' `geom_serie_text` is designed to be used in concert with [geom_serie_circle].
+#' It renders the mapping `label` at the end position of the serie circles sequence.
+#'
+#' @inheritParams ggplot2::geom_text
 #' @export
 geom_serie_text <-  function(mapping = NULL, data = NULL,
                              position = "identity", show.legend = NA,

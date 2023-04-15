@@ -1,9 +1,12 @@
 Package: ggtricks
-Title: What the Package Does (One Line, Title Case)
+Title: Create Sector and Other Charts Easily Using Grammar of Graphics
 Version: 0.0.0.9000
 Authors@R: 
     person("Abdoul", "ISSA BIDA", , "contact@abdoulblog.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Description: A collection of several geom to create graphics, using
+    "ggplot2" and the Cartesian coordinate system. You use the familiar
+    mapping 'Grammar of Graphics' without the need to do another
+    transformation into polar cordinates.
 License: MIT + file LICENSE
 URL: https://github.com/AbdoulMa/ggtricks
 BugReports: https://github.com/AbdoulMa/ggtricks/issues

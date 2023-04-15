@@ -27,7 +27,9 @@ categorize <- function(data) {
 }
 
 pre_process_params <- function(data, params) {
+  print(params)
   data <- categorize(data)
+  cat_is_present <- FALSE
   if(!is.null(params$spotlight_cat)) {
     cat_index <- which(data$cat == params$spotlight_cat)
     cat_is_present <- length(cat_index) > 0 || FALSE
@@ -50,10 +52,12 @@ pre_process_params <- function(data, params) {
   }
   if (is.null(params$spotlight_position) || !params$spotlight_position %in% c("top", "right", "bottom", "left")) {
     params$spotlight_position <- "top"
+    if (cat_is_present || params$spotlight_max) {
     cli::cli_warn(c(
       x = "You set an unknown {.field spotlight_position} : {params$spotlight_position}",
       i = "{.code top} is selected by default"
                      ))
+    }
   }
   params
 }
