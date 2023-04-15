@@ -1,3 +1,46 @@
+#' @param x0 Init position x
+#' @param y0 Init position y
+#' @param init_angle Starting angle
+#' @param radius Driving circle radius
+#' @param color Plot border colour
+#' @param alpha Filling colour transparency \[0,1\]
+#' @param linewidth Plot border size
+#' @param spotlight_max `TRUE` if we want the max value category
+#' to drive the positions of all categories
+#' @param spotlight_cat Should be a value inside categories vector.
+#' When it is provided, it is this category position which drives the
+#' positions of all categories
+#' @param spotlight_position It is used to position the category spotlighted.
+#' Value should be in `c("top","right", "bottom", "left")`. When a valid `spotlight_cat` is
+#' provided  or `spotlight_max` is set to `TRUE`, the default `spotlight_position` value is set
+#' to `TRUE`
+#' @param labels_with_tick `TRUE` if we want tick when labelling categories
+#' @param labels_family Labels font family
+#' @param labels_size Labels font size
+#' @param labels_col Labels colour
+#' @param labels_hjust Labels horizontal adjusting
+#' @param labels_vjust Labels vertical adjusting
+#' @param labels_fontface Labels font face
+#' @param labels_lineheight Labels line height
+#' @param tick_lwd Ticks Size
+#' @param mapping Set of aesthetic mappings created by `aes()` or
+#'   `aes_()`. If specified and `inherit.aes = TRUE` (the
+#'   default), it is combined with the default mapping at the top level of the
+#'   plot. You must supply `mapping` if there is no plot mapping.
+#' @param data to be displayed in this layer
+#' @param na.rm If `FALSE`, the default, missing values are removed with
+#'   a warning. If `TRUE`, missing values are silently removed.
+#' @param show.legend logical. Should this layer be included in the legends?
+#'   `NA`, the default, includes if any aesthetics are mapped.
+#'   `FALSE` never includes, and `TRUE` always includes.
+#'   It can also be a named logical vector to finely select the aesthetics to
+#'   display.
+#' @param inherit.aes If `FALSE`, overrides the default aesthetics,
+#'   rather than combining with them.
+#' @param ... other arguments passed on to `layer()`.
+common_doc <- function()
+NULL
+
 draw_panel_function = function(data, panel_scales, coord,
                                # params to use in draw function
                                # values are changed when changed in geom
@@ -80,12 +123,11 @@ draw_panel_function = function(data, panel_scales, coord,
 }
 
 
-#' @usage NULL
 #' @format NULL
+#' @usage NULL
 #' @export
 GeomPie <- ggplot2::ggproto("GeomPie", ggplot2::GeomPolygon,
                    setup_data = function(data, params) {
-
                      data
                    },
                    draw_panel = draw_panel_function,
@@ -98,9 +140,17 @@ GeomPie <- ggplot2::ggproto("GeomPie", ggplot2::GeomPolygon,
                    rename_size = TRUE
 )
 
+#' Create pie plot using Cartesian coordinates system
+#'
+#' There are two  arguments absolutely needed in  `aes()` mappings:
+#' - `cat` A discrete categories vector
+#' - `val` A numerical values vector
+#'
+#' @inheritParams common_doc
+#'
 #' @export
 geom_pie <- function(mapping = NULL, data = NULL,
-                     position = "identity", show.legend = NA,
+                     show.legend = NA,
                      na.rm = FALSE, inherit.aes = TRUE,
                      init_angle = 0, x0 = 0, y0 = 0, radius = 1, color = "black", alpha = 1, linewidth = .5, spotlight_max = FALSE, spotlight_cat = NULL, spotlight_position =  NULL, labels_with_tick = F,
                      labels_family = "",
@@ -112,7 +162,7 @@ geom_pie <- function(mapping = NULL, data = NULL,
     mapping = mapping,
     stat = StatPie,
     geom = GeomPie,
-    position = position,
+    position = "identity",
     show.legend =  show.legend,
     inherit.aes = inherit.aes,
     check.param =  FALSE,

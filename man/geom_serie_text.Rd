@@ -4,7 +4,7 @@
 \name{GeomSerieText}
 \alias{GeomSerieText}
 \alias{geom_serie_text}
-\title{Create serie of circle label Text}
+\title{Create serie of circles labels text}
 \format{
 An object of class \code{GeomSerieText} (inherits from \code{GeomText}, \code{Geom}, \code{ggproto}, \code{gg}) of length 1.
 }
@@ -66,7 +66,16 @@ often aesthetics, used to set an aesthetic to a fixed value, like
 to the paired geom/stat.}
 }
 \description{
-\code{geom_serie_text} is designed to be use in concert with \link{geom_serie_circle}.
+\code{geom_serie_text} is designed to be used in concert with \link{geom_serie_circle}.
 It renders the mapping \code{label} at the end position of the serie circles sequence.
+
+There are two are arguments absolutely needed in  \code{aes()} mappings:
+\itemize{
+\item \code{x} A vector mapping the abscissa "x" axis. Either a character vector
+when \code{x} is a numerical vector. Either a numerical vector when \code{y} is a character
+vector.
+\item \code{y} A vector mapping the ordinate "y" axis. Either a numerical vector
+when \code{x} is a character vector. And vice versa.
+}
 }
 \keyword{datasets}

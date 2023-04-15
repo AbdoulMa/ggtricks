@@ -34,11 +34,12 @@ draw_panel_function = function(data, panel_scales, coord, r = .5) {
   )
 }
 
-#' @rdname geom_serie_circle
-#' #' @param x A vector mapping the abscissa (x) axis. Either a character vector
+
+#' @inheritParams geom_serie_circle
+#' @param x A vector mapping the abscissa "x" axis. Either a character vector
 #' when `x` is a numerical vector. Either a numerical vector when `y` is a character
 #' vector.
-#' @param y A vector mapping the ordinate (y) axis. Either a numerical vector
+#' @param y A vector mapping the ordinate "y" axis. Either a numerical vector
 #' when `x` is a character vector. And vice versa.
 #' @export
 GeomSerieCircle <- ggplot2::ggproto("GeomSerieCircle", ggplot2::GeomPolygon,
@@ -57,6 +58,13 @@ GeomSerieCircle <- ggplot2::ggproto("GeomSerieCircle", ggplot2::GeomPolygon,
 #' whole and fragments of circles to represent numerical values.
 #' As it draws circle, the geom should use with [ggplot2::coord_equal()]
 #' to maintain the "aspect ratio".
+#'
+#' There are two are arguments absolutely needed in  `aes()` mappings:
+#' - `x` A vector mapping the abscissa "x" axis. Either a character vector
+#' when `x` is a numerical vector. Either a numerical vector when `y` is a character
+#' vector.
+#' - `y` A vector mapping the ordinate "y" axis. Either a numerical vector
+#' when `x` is a character vector. And vice versa.
 #'
 #' @param mapping Set of aesthetic mappings created by `aes()` or
 #'   `aes_()`. If specified and `inherit.aes = TRUE` (the
@@ -105,15 +113,23 @@ geom_serie_circle <-  function(mapping = NULL, data = NULL,
 }
 
 # Serie Text ----
+
 #' @rdname geom_serie_text
 #' @export
 GeomSerieText <- ggplot2::ggproto("GeomSerieText", ggplot2::GeomText)
 
-#' Create serie of circle label Text
+#' Create serie of circles labels text
 #'
 #' @description
 #' `geom_serie_text` is designed to be used in concert with [geom_serie_circle].
 #' It renders the mapping `label` at the end position of the serie circles sequence.
+#'
+#' There are two are arguments absolutely needed in  `aes()` mappings:
+#' - `x` A vector mapping the abscissa "x" axis. Either a character vector
+#' when `x` is a numerical vector. Either a numerical vector when `y` is a character
+#' vector.
+#' - `y` A vector mapping the ordinate "y" axis. Either a numerical vector
+#' when `x` is a character vector. And vice versa.
 #'
 #' @inheritParams ggplot2::geom_text
 #' @export
@@ -132,3 +148,5 @@ geom_serie_text <-  function(mapping = NULL, data = NULL,
     params = list(na.rm = na.rm, ...)
   )
 }
+
+

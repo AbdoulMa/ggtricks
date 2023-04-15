@@ -27,7 +27,6 @@ categorize <- function(data) {
 }
 
 pre_process_params <- function(data, params) {
-  print(params)
   data <- categorize(data)
   cat_is_present <- FALSE
   if(!is.null(params$spotlight_cat)) {

@@ -57,6 +57,15 @@ simple or multiple bar charts. It consists in using
 whole and fragments of circles to represent numerical values.
 As it draws circle, the geom should use with \code{\link[ggplot2:coord_fixed]{ggplot2::coord_equal()}}
 to maintain the "aspect ratio".
+
+There are two are arguments absolutely needed in  \code{aes()} mappings:
+\itemize{
+\item \code{x} A vector mapping the abscissa "x" axis. Either a character vector
+when \code{x} is a numerical vector. Either a numerical vector when \code{y} is a character
+vector.
+\item \code{y} A vector mapping the ordinate "y" axis. Either a numerical vector
+when \code{x} is a character vector. And vice versa.
+}
 }
 \examples{
 my_df <- data.frame(cat= c("Apple", "Banana", "Pineapple"), val = c(2.65, 4.5, 6.25))
