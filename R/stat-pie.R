@@ -58,6 +58,9 @@ StatPie <- ggplot2::ggproto("StatPie", ggplot2::Stat,
                    required_aes = c("cat", "val")
 )
 
+#' @format NULL
+#' @usage NULL
+#' @export
 stat_pie <- function(mapping = NULL, data = NULL, geom = "pie",
                      position = "identity", show.legend = NA, na.rm = FALSE,
                      inherit.aes = TRUE,

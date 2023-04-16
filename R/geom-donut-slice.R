@@ -109,19 +109,29 @@ GeomDonutSlice <- ggplot2::ggproto("GeomDonutSlice", ggplot2::GeomPolygon,
                           },
                           draw_panel = draw_panel_function,
                           required_aes = c("cat","x", "y"),
-                          default_aes = ggplot2::aes(colour = NA, fill = "#026841", linewidth = 0.5,
+                          default_aes = ggplot2::aes(colour = NA, fill = NA, linewidth = 0.5,
                                             alpha = NA),
                           optional_aes = c("label"),
                           rename_size = TRUE
 )
 
+#' Create donut slice plot using Cartesian coordinates system
+#'
+#' There are two  arguments absolutely needed in  `aes()` mappings:
+#' - `cat` A discrete categories vector
+#' - `val` A numerical values vector
+#'
+#' @inheritParams geom_donut
+#' @param slice_angle Pie slice angle
+#' @param slice_position Pie slice position
+#' @param link_with_origin `TRUE` if we want to link
+#'  slice borders with origin
 #' @export
 geom_donut_slice <- function(mapping = NULL, data = NULL,
-                             position = "identity", show.legend = NA,
+                            show.legend = NA,
                              na.rm = FALSE, inherit.aes = TRUE,
                              # For parameters
-
-                             slice_angle = 180, init_angle = 0, x0 = 0, y0 = 0, radius = 1, color = "black", alpha = 1, linewidth = .5, slice_position =  NA, labels_with_tick = F,
+                             slice_angle = 180, init_angle = 0, x0 = 0, y0 = 0, r1 = 1, r2 = .65, color = "black", alpha = 1, linewidth = .5, slice_position =  NA, labels_with_tick = F,
                              link_with_origin = F,
                              labels_family = "",
                              labels_size = 5,
@@ -132,7 +142,7 @@ geom_donut_slice <- function(mapping = NULL, data = NULL,
     mapping = mapping,
     stat = StatDonutSlice,
     geom = GeomDonutSlice,
-    position = position,
+    position = "identity",
     show.legend =  show.legend,
     inherit.aes = inherit.aes,
     check.param =  FALSE,
@@ -142,7 +152,8 @@ geom_donut_slice <- function(mapping = NULL, data = NULL,
       init_angle = init_angle,
       x0 = x0,
       y0 = y0,
-      radius = radius,
+      r1 = r1,
+      r2 = r2,
       alpha = alpha,
       slice_position = slice_position,
       color = color,

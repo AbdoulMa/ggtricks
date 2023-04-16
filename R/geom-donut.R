@@ -83,6 +83,8 @@ draw_panel_function = function(data, panel_scales, coord,
   )
 }
 
+#' @usage NULL
+#' @format NULL
 #' @export
 GeomDonut <- ggplot2::ggproto("GeomDonut", ggplot2::GeomPolygon,
                      setup_data = function(data, params) {
@@ -92,15 +94,26 @@ GeomDonut <- ggplot2::ggproto("GeomDonut", ggplot2::GeomPolygon,
 
                      required_aes = c("cat","x", "y"),
 
-                     default_aes = ggplot2::aes(colour = NA, fill = "#026841", linewidth = 0.5,
+                     default_aes = ggplot2::aes(colour = NA, fill = NA, linewidth = 0.5,
                                        alpha = NA),
                      optional_aes = c("label"),
                      rename_size = TRUE
 )
 
+#' Create donut plot using Cartesian coordinates system
+#'
+#' There are two arguments absolutely needed in  `aes()` mappings:
+#' - `cat` A discrete categories vector
+#' - `val` A numerical values vector
+#'
+#' @inheritParams common_doc
+#' @param r1 Outer circle radius
+#' @param r2 Inner circle radius, should inferior  to `r1` value.
+#' `r1` and `r2` values are swapped otherwise.
+#'
 #' @export
 geom_donut <- function(mapping = NULL, data = NULL,
-                       position = "identity", show.legend = NA,
+                      show.legend = NA,
                        na.rm = FALSE, inherit.aes = TRUE,
                        # For parameters
                        init_angle = 0, x0 = 0, y0 = 0, r1 = 1, r2 = .65,  color = "black", alpha = 1, linewidth = .5, spotlight_max = FALSE, spotlight_cat = NULL, spotlight_position =  NULL, labels_with_tick = F,
@@ -113,7 +126,7 @@ geom_donut <- function(mapping = NULL, data = NULL,
     mapping = mapping,
     stat = StatDonut,
     geom = GeomDonut,
-    position = position,
+    position = "identity",
     show.legend =  show.legend,
     inherit.aes = inherit.aes,
     check.param =  FALSE,

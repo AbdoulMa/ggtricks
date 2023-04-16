@@ -41,6 +41,8 @@ draw_panel_function = function(data, panel_scales, coord, r = .5) {
 #' vector.
 #' @param y A vector mapping the ordinate "y" axis. Either a numerical vector
 #' when `x` is a character vector. And vice versa.
+#' @format NULL
+#' @usage NULL
 #' @export
 GeomSerieCircle <- ggplot2::ggproto("GeomSerieCircle", ggplot2::GeomPolygon,
                            draw_panel = draw_panel_function,

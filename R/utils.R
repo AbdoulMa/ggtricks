@@ -50,13 +50,13 @@ pre_process_params <- function(data, params) {
     cli::cli_warn("You set {.field spotlight_max} so angle parameter is not used anymore.")
   }
   if (is.null(params$spotlight_position) || !params$spotlight_position %in% c("top", "right", "bottom", "left")) {
-    params$spotlight_position <- "top"
     if (cat_is_present || params$spotlight_max) {
     cli::cli_warn(c(
       x = "You set an unknown {.field spotlight_position} : {params$spotlight_position}",
       i = "{.code top} is selected by default"
                      ))
     }
+    params$spotlight_position <- "top"
   }
   params
 }

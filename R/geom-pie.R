@@ -1,7 +1,6 @@
 #' @param x0 Init position x
 #' @param y0 Init position y
 #' @param init_angle Starting angle
-#' @param radius Driving circle radius
 #' @param color Plot border colour
 #' @param alpha Filling colour transparency \[0,1\]
 #' @param linewidth Plot border size
@@ -147,6 +146,7 @@ GeomPie <- ggplot2::ggproto("GeomPie", ggplot2::GeomPolygon,
 #' - `val` A numerical values vector
 #'
 #' @inheritParams common_doc
+#' @param radius Driving circle radius
 #'
 #' @export
 geom_pie <- function(mapping = NULL, data = NULL,
