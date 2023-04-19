@@ -43,13 +43,13 @@ StatDonut <- ggplot2::ggproto("StatDonut", ggplot2::Stat,
                          # Compute ticks coords when necessary
                          if (!is.null(data$label)) {
                            label_radius <- max(r1, r2)
-                           Plabel <- t2xy(mean(x[i + 0:1]), cat, init, x, x0 = x0, y0 = y0, radius = label_radius + label_radius*.1, init.angle = angle, spotlight_max = sm,spotlight_cat = sc, spotlight_position = mp, cat_is_present = cat_is_present, cat_index = cat_index)
+                           Plabel <- t2xy(mean(x[i + 0:1]), cat, init, x, x0 = x0, y0 = y0, radius = label_radius + label_radius*.1, init.angle = init_angle, spotlight_max = sm,spotlight_cat = sc, spotlight_position = mp, cat_is_present = cat_is_present, cat_index = cat_index)
                            df2$labelx <-  Plabel$x
                            df2$labely <-  Plabel$y
                            df2$label <-  data$label[i]
                            if (labels_with_tick) {
-                             ticks_start <- t2xy(mean(x[i + 0:1]), cat, init, x, x0 = x0, y0 = y0, radius = label_radius, init.angle = angle, spotlight_max = sm, spotlight_cat = sc, spotlight_position = mp, cat_is_present = cat_is_present, cat_index = cat_index)
-                             ticks_end <- t2xy(mean(x[i + 0:1]), cat, init, x, x0 = x0, y0 = y0, radius = label_radius + label_radius *.05, init.angle = angle, spotlight_max = sm, spotlight_cat = sc, spotlight_position = mp, cat_is_present = cat_is_present, cat_index = cat_index)
+                             ticks_start <- t2xy(mean(x[i + 0:1]), cat, init, x, x0 = x0, y0 = y0, radius = label_radius, init.angle = init_angle, spotlight_max = sm, spotlight_cat = sc, spotlight_position = mp, cat_is_present = cat_is_present, cat_index = cat_index)
+                             ticks_end <- t2xy(mean(x[i + 0:1]), cat, init, x, x0 = x0, y0 = y0, radius = label_radius + label_radius *.05, init.angle = init_angle, spotlight_max = sm, spotlight_cat = sc, spotlight_position = mp, cat_is_present = cat_is_present, cat_index = cat_index)
                              df2$xstart <-  ticks_start$x
                              df2$ystart <-  ticks_start$y
                              df2$xend <-  ticks_end$x

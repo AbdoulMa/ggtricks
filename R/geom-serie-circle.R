@@ -3,7 +3,6 @@ draw_panel_function = function(data, panel_scales, coord, r = .5) {
   max <- max(data$group, data$id)
   data$circle_id = generate_id(data$group, data$id, max)
   coords <- coord$transform(data, panel_scales)
-  # view(coords)
 
   first_row <- coords[1, ]
   # Polygons of first 10 groups are
@@ -20,7 +19,6 @@ draw_panel_function = function(data, panel_scales, coord, r = .5) {
   fills_2 <- fills_2$fill
 
   fills <- c(fills_1, fills_2)
-
   grid::polygonGrob(
     x = coords$x,
     y = coords$y,
@@ -101,7 +99,7 @@ GeomSerieCircle <- ggplot2::ggproto("GeomSerieCircle", ggplot2::GeomPolygon,
 geom_serie_circle <-  function(mapping = NULL, data = NULL,
                                show.legend = NA,
                                na.rm = FALSE, inherit.aes = TRUE,
-                               angle = 0, r = .5, color = NA, fill = "black", linewidth = 0.5, ...) {
+                               angle = 0, r = .5, ...) {
   ggplot2::layer(
     data = data,
     mapping = mapping,
@@ -110,7 +108,7 @@ geom_serie_circle <-  function(mapping = NULL, data = NULL,
     position = "identity",
     show.legend =  show.legend,
     inherit.aes = inherit.aes,
-    params = list(na.rm = na.rm, angle = angle, r = r, color = color, fill = fill, linewidth = linewidth, ...)
+    params = list(na.rm = na.rm, angle = angle, r = r, ...)
   )
 }
 

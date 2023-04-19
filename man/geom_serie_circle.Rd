@@ -12,9 +12,6 @@ geom_serie_circle(
   inherit.aes = TRUE,
   angle = 0,
   r = 0.5,
-  color = NA,
-  fill = "black",
-  linewidth = 0.5,
   ...
 )
 }
@@ -42,14 +39,14 @@ rather than combining with them.}
 
 \item{r}{Circle radius, should be <= 0.5.}
 
+\item{...}{other arguments passed on to \code{layer()}.}
+
 \item{color}{Color of circles/fragments of circles borders.}
 
 \item{fill}{Color to fill circles/fragments of circles with. This parameter}
 
 \item{linewidth}{Size of circles/fragments of circles borders.
 can be used in  \code{aes} mapping or as  a global argument for all the circles.}
-
-\item{...}{other arguments passed on to \code{layer()}.}
 }
 \description{
 \code{geom_serie_circle()} can be used as an alternative for

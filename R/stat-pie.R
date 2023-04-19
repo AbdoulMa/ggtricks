@@ -27,7 +27,6 @@ StatPie <- ggplot2::ggproto("StatPie", ggplot2::Stat,
                      df <- data.frame(cat = character(), x = numeric(), y = numeric(), xstart = numeric(), ystart = numeric(), xend = numeric(), yend = numeric(), labelx = numeric(), labely = numeric(), label = character())
                      for (i in 1L:nx) {
                        n <- max(2, floor(edges * dx[i]))
-                       # print(paste0("n: ", n))
                        P <- t2xy(seq.int(x[i], x[i+1], length.out = n), cat, init, x, x0 = x0, y0 = y0, radius = radius, init.angle = init_angle, spotlight_max = sm, spotlight_cat = sc, spotlight_position = mp, cat_is_present = cat_is_present, cat_index = cat_index)
 
 

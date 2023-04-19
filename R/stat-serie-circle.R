@@ -54,8 +54,6 @@ StatSerieCircle <- ggplot2::ggproto("StatSerieCircle", ggplot2::Stat,
                                       df <- df[df$x > 0, ]
                                       df$y <- sequence(rle(as.numeric(df$PANEL))$lengths)
                                       df
-
-
                                       # Data from here is passed to compute_group
                                     },
                                     compute_group = function(data, scales, angle = 0, r = .5, x_discrete = T, y_discrete = F) {
