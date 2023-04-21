@@ -32,17 +32,10 @@ draw_panel_function = function(data, panel_scales, coord, r = .5) {
   )
 }
 
-
-#' @inheritParams geom_serie_circle
-#' @param x A vector mapping the abscissa "x" axis. Either a character vector
-#' when `x` is a numerical vector. Either a numerical vector when `y` is a character
-#' vector.
-#' @param y A vector mapping the ordinate "y" axis. Either a numerical vector
-#' when `x` is a character vector. And vice versa.
 #' @format NULL
 #' @usage NULL
 #' @export
-GeomSerieCircle <- ggplot2::ggproto("GeomSerieCircle", ggplot2::GeomPolygon,
+GeomSeriesCircles <- ggplot2::ggproto("GeomSeriesCircles", ggplot2::GeomPolygon,
                            draw_panel = draw_panel_function,
                            required_aes = c("x","y"),
                            default_aes = ggplot2::aes(colour = NA, fill = "black", linewidth = 0.5,
@@ -50,10 +43,10 @@ GeomSerieCircle <- ggplot2::ggproto("GeomSerieCircle", ggplot2::GeomPolygon,
                            rename_size = TRUE
 )
 
-#' Create serie of circles plot
+#' @title Create series of circles plot
 #'
 #' @description
-#' `geom_serie_circle()` can be used as an alternative for
+#' `geom_series_circles()` can be used as an alternative for
 #' simple or multiple bar charts. It consists in using
 #' whole and fragments of circles to represent numerical values.
 #' As it draws circle, the geom should use with [ggplot2::coord_equal()]
@@ -92,19 +85,19 @@ GeomSerieCircle <- ggplot2::ggproto("GeomSerieCircle", ggplot2::GeomPolygon,
 #' my_df <- data.frame(cat= c("Apple", "Banana", "Pineapple"), val = c(2.65, 4.5, 6.25))
 #'my_df |>
 #'  ggplot2::ggplot() +
-#'  geom_serie_circle(ggplot2::aes(cat, val)) +
+#'  geom_series_circles(ggplot2::aes(cat, val)) +
 #'  ggplot2::coord_equal()
 #'
 #' @export
-geom_serie_circle <-  function(mapping = NULL, data = NULL,
+geom_series_circles <-  function(mapping = NULL, data = NULL,
                                show.legend = NA,
                                na.rm = FALSE, inherit.aes = TRUE,
                                angle = 0, r = .5, ...) {
   ggplot2::layer(
     data = data,
     mapping = mapping,
-    stat = StatSerieCircle,
-    geom = GeomSerieCircle,
+    stat = StatSeriesCircles,
+    geom = GeomSeriesCircles,
     position = "identity",
     show.legend =  show.legend,
     inherit.aes = inherit.aes,
@@ -114,14 +107,14 @@ geom_serie_circle <-  function(mapping = NULL, data = NULL,
 
 # Serie Text ----
 
-#' @rdname geom_serie_text
+#' @rdname geom_series_text
 #' @export
-GeomSerieText <- ggplot2::ggproto("GeomSerieText", ggplot2::GeomText)
+GeomSeriesText <- ggplot2::ggproto("GeomSeriesText", ggplot2::GeomText)
 
 #' Create serie of circles labels text
 #'
 #' @description
-#' `geom_serie_text` is designed to be used in concert with [geom_serie_circle].
+#' `geom_series_text` is designed to be used in concert with [geom_series_circles].
 #' It renders the mapping `label` at the end position of the serie circles sequence.
 #'
 #' There are two are arguments absolutely needed in  `aes()` mappings:
@@ -133,15 +126,15 @@ GeomSerieText <- ggplot2::ggproto("GeomSerieText", ggplot2::GeomText)
 #'
 #' @inheritParams ggplot2::geom_text
 #' @export
-geom_serie_text <-  function(mapping = NULL, data = NULL,
+geom_series_text <-  function(mapping = NULL, data = NULL,
                              position = "identity", show.legend = NA,
                              na.rm = FALSE, inherit.aes = TRUE,
                              ...) {
   ggplot2::layer(
     data = data,
     mapping = mapping,
-    stat = StatSerieText,
-    geom = GeomSerieText,
+    stat = StatSeriesText,
+    geom = GeomSeriesText,
     position = position,
     show.legend =  show.legend,
     inherit.aes = inherit.aes,

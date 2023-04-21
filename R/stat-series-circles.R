@@ -1,6 +1,6 @@
 # Serie circle ----
 #' @export
-StatSerieCircle <- ggplot2::ggproto("StatSerieCircle", ggplot2::Stat,
+StatSeriesCircles <- ggplot2::ggproto("StatsSeriesCircles", ggplot2::Stat,
                                     setup_params = function(data, params) {
                                       # Default operations on data with params
                                       # before  compute_group
@@ -111,14 +111,14 @@ StatSerieCircle <- ggplot2::ggproto("StatSerieCircle", ggplot2::Stat,
 )
 
 #' @export
-stat_serie_circle <- function(mapping = NULL, data = NULL, geom = "serie_circle",
+stat_series_circles <- function(mapping = NULL, data = NULL, geom = "series_circles",
                               position = "identity", show.legend = NA, na.rm = FALSE,
                               inherit.aes = TRUE,
                               angle = NULL,
                               r = NA,
                               ...) {
   ggplot2::layer(
-    stat = StatSerieCircle,
+    stat = StatSeriesCircles,
     geom = geom,
     data = data,
     mapping = mapping,
@@ -136,7 +136,7 @@ stat_serie_circle <- function(mapping = NULL, data = NULL, geom = "serie_circle"
 #' @usage NULL
 #' @format NULL
 #' @export
-StatSerieText  <- ggplot2::ggproto("StatSerieText", ggplot2::Stat,
+StatSeriesText  <- ggplot2::ggproto("StatSeriesText", ggplot2::Stat,
                                    setup_params = function(data, params) {
                                      x_class <- class(data$x)[1]
                                      y_class <- class(data$y)[1]
@@ -172,12 +172,12 @@ StatSerieText  <- ggplot2::ggproto("StatSerieText", ggplot2::Stat,
 
 
 #' @export
-stat_serie_text <- function(mapping = NULL, data = NULL, geom = "serie_text",
+stat_series_text <- function(mapping = NULL, data = NULL, geom = "series_text",
                             position = "identity", show.legend = NA, na.rm = FALSE,
                             inherit.aes = TRUE,
                             ...) {
   ggplot2::layer(
-    stat = StatSerieText,
+    stat = StatSeriesText,
     geom = geom,
     data = data,
     mapping = mapping,

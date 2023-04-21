@@ -6,18 +6,48 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of ggtricks is to create fun geom with the grammar of graphics
-philosophy.
+{ggtricks} package is a collection of multiple geom presenting data in
+the form of circle (at the moment, but many more to come and not only
+circle oriented.) using grammar of graphics philosophy and Cartesian
+coordinates system.
+
+You have bench of functions to make sector charts where circle is
+divided along it radii, so each section is proportional to value it
+represents.
+
+- `geom_pie` Pie charts
+- `geom_donut` Donut charts (Pie chart with a hole)
+- `geom_slice` Part of Pie charts
+- `geom_donut_slice` Part of Donut charts
+
+You also have a function, `geom_series_circles()` to draw what I call
+series of circles, which draws for a category as many circles and
+fraction of circles needed to represent the value represented by this
+category. A companion function `geom_series_text` is defined to put
+labels at limit of series circles as computing this limits positions can
+be tedious depending on fragments circles starting angles.
 
 ## Installation
 
 You can install the development version of ggtricks like so:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+install.packages("ggtricks")
+# or 
+devtools::install_github("abdoulma/ggtricks")
 ```
 
-## Example
+## Examples
+
+### `geom_series_circles`
+
+### `geom_pie`
+
+### `geom_donut`
+
+### `geom_slice`
+
+### `geom_donut_slice`
 
 This is a basic example which shows you how to solve a common problem:
 
@@ -52,3 +82,29 @@ You can also embed plots, for example:
 
 In that case, don’t forget to commit and push the resulting figure
 files, so they display on GitHub and CRAN.
+
+## Limitations
+
+As you surely noted, to generate circle, I use `coord_equal()`, using
+`coord_cartesian()` will zoom the plot, not generating a appealing
+circle shape even if the underlying drawn plot is a plot. So, we fix,
+the `aspect ratio` to force :
+
+> the physical representation of data units on the axes.
+
+according to the official
+[documentation](https://ggplot2.tidyverse.org/reference/coord_fixed.html).
+Of course, you shouldn’t edit the default `ratio = 1` that ensures that
+one unit on `x-axis` is the same length as one unit on the `y-axis`.
+
+When using `geom_serie_circle()`, the desire will come one day to
+combine it with `facet_wrap()` or `facet_grid` or whatever faceting
+function, **you should not**, or not in the way you are thinking about.
+
+As we use `coord_equal()`, you won’t be able to set `scales` parameter,
+what I strongly suspect you to try to do. So for the moment, I don’t
+recommend you to do so. Although, I give some tips to go through those
+restrictions on package website
+<https://www.abdoulma.github.io/ggtricks>
+
+## Roadmap

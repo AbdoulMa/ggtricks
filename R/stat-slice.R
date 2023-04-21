@@ -3,15 +3,7 @@
 #' @export
 StatSlice <- ggplot2::ggproto("StatSlice", ggplot2::Stat,
                      setup_params = function(data, params) {
-                       # Default operations on data with params
-                       if (!is.na(params$slice_position)) {
-                         print("position used => angle not used")
-                         params$init_angle <- angle_rotation_slice(params$slice_angle, params$slice_position)
-                       }
-                       params$slice_angle <- params$slice_angle  * pi / 180
-
-
-                       params
+                      pre_process_slice_params(data, params)
                      },
                      setup_data = function(data, params) {
                        categorize(data)

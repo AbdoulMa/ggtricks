@@ -27,6 +27,9 @@ categorize <- function(data) {
 }
 
 pre_process_params <- function(data, params) {
+  if (!is.numeric(data$val)){
+    cli::cli_abort("{.field val} column should be numeric.")
+  }
   data <- categorize(data)
   cat_is_present <- FALSE
   if(!is.null(params$spotlight_cat)) {
@@ -118,3 +121,16 @@ t2xy_slice <- function(t, radius = .8, slice_angle = 180, x0 = 0, y0 = 0, init_a
   list(x = x0 + radius * cos(t2p), y = y0 + radius * sin(t2p))
 }
 
+pre_process_slice_params <- function(data, params) {
+  if (!is.numeric(data$val)){
+    cli::cli_abort("{.field val} column should be numeric.")
+  }
+  if (!is.na(params$slice_position)) {
+    if(params$init_angle != 0) {
+      cli::cli_warn("{.field slice_position} used,  {.field init_angle} not used.")
+    }
+    params$init_angle <- angle_rotation_slice(params$slice_angle, params$slice_position)
+  }
+  params$slice_angle <- params$slice_angle  * pi / 180
+  params
+}
