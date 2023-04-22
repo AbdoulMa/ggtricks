@@ -14,6 +14,7 @@ Imports:
     cli,
     ggplot2
 Suggests: 
+    covr,
     testthat (>= 3.0.0),
     vdiffr
 Config/testthat/edition: 3

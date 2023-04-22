@@ -4,6 +4,11 @@
 # ggtricks
 
 <!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/ggtricks)](https://CRAN.R-project.org/package=ggtricks)
+[![Codecov test
+coverage](https://codecov.io/gh/AbdoulMa/ggtricks/branch/main/graph/badge.svg)](https://app.codecov.io/gh/AbdoulMa/ggtricks?branch=main)
 <!-- badges: end -->
 
 {ggtricks} package is a collection of multiple geom presenting data in
@@ -25,7 +30,7 @@ series of circles, which draws for a category as many circles and
 fraction of circles needed to represent the value represented by this
 category. A companion function `geom_series_text` is defined to put
 labels at limit of series circles as computing this limits positions can
-be tedious depending on fragments circles starting angles.
+be tedious depending on fragments of circles starting angle.
 
 ## Installation
 
@@ -41,7 +46,76 @@ devtools::install_github("abdoulma/ggtricks")
 
 ### `geom_series_circles`
 
+- Basic Example
+
+``` r
+library(tidyverse)
+#> ── Attaching core tidyverse packages ──────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+#> ✔ dplyr     1.1.1     ✔ readr     2.1.4
+#> ✔ forcats   1.0.0     ✔ stringr   1.5.0
+#> ✔ ggplot2   3.4.1     ✔ tibble    3.2.1
+#> ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+#> ✔ purrr     1.0.1     
+#> ── Conflicts ────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+#> ✖ dplyr::filter() masks stats::filter()
+#> ✖ dplyr::lag()    masks stats::lag()
+#> ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+library(ggtricks)
+prod_df <- data.frame(
+  good = c("Chicken", "Eggs", "Meats"), 
+  inflation = c(2.275, 8.5, 3.85)
+)
+
+prod_df <- prod_df |> 
+  mutate(good = fct_reorder(good, inflation))
+
+prod_df |>
+  ggplot() + 
+  geom_series_circles(aes(inflation, good), color = "white", linewdith = 2.5) + 
+  coord_equal() + 
+  theme_minimal()
+```
+
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+
+Of course, there are a mapping argument `fill` to drive each category
+filling color.
+
+``` r
+prod_df |>
+  ggplot() + 
+  geom_series_circles(aes(inflation, good, fill = good),color = "black", linewdith = 2.5) + 
+  coord_equal() + 
+  theme_minimal()
+```
+
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+
+Of course, y ou can choose, to customize the categories labels by
+setting `axis.text` in `theme_*()` function. But the need can come to
+add labels at series of circles ending positions. There comes
+`geom_series_text()` functions.
+
+- Two series of circles combination
+
+``` r
+prod_df |>
+  ggplot() + 
+  geom_series_circles(aes(inflation, good, fill = good),color = "black", linewdith = 2.5) + 
+  geom_series_text(aes(inflation, good, label = inflation)) + 
+  coord_equal() + 
+  theme_minimal()
+```
+
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+
 ### `geom_pie`
+
+- Example with spotlight_max
+- Example with spotlight_position (all the four)
+- Example with spotlight_cat
+- Example with labels
+- Labels with ticks
 
 ### `geom_donut`
 
@@ -108,3 +182,7 @@ restrictions on package website
 <https://www.abdoulma.github.io/ggtricks>
 
 ## Roadmap
+
+Detach spotlighted category Variate radius for categories representation
+Label displaying in mapping (choose category we want to display) Special
+key draw for pie and slices and another one for donut and donut_slice

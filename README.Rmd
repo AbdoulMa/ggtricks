@@ -6,7 +6,13 @@ output: github_document
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
+  echo = TRUE,
   collapse = TRUE,
+  massage = FALSE, 
+  warning = FALSE,
+  error = FALSE,
+  cache = TRUE,
+  fig.retina = 2,
   comment = "#>",
   fig.path = "man/figures/README-",
   out.width = "100%"
@@ -16,6 +22,8 @@ knitr::opts_chunk$set(
 # ggtricks
 
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/ggtricks)](https://CRAN.R-project.org/package=ggtricks)
+[![Codecov test coverage](https://codecov.io/gh/AbdoulMa/ggtricks/branch/main/graph/badge.svg)](https://app.codecov.io/gh/AbdoulMa/ggtricks?branch=main)
 <!-- badges: end -->
 
 {ggtricks} package is a collection of multiple geom  presenting data in the form of  circle (at the moment, but many more to come and not only circle oriented.) using grammar of graphics philosophy and Cartesian coordinates system.
@@ -34,20 +42,70 @@ You also have a function, `geom_series_circles()` to draw what I call series of 
 
 You can install the development version of ggtricks like so:
 
-``` r
+```r
 install.packages("ggtricks")
 # or 
 devtools::install_github("abdoulma/ggtricks")
+```
+
+```{r s2, include=FALSE}
+options(width=120)
 ```
 
 ## Examples 
 
 ###  `geom_series_circles`
 
+
+
+
+- Basic Example
+```{r}
+library(tidyverse)
+library(ggtricks)
+prod_df <- data.frame(
+  good = c("Chicken", "Eggs", "Meats"), 
+  inflation = c(2.275, 8.5, 3.85)
+)
+
+prod_df <- prod_df |> 
+  mutate(good = fct_reorder(good, inflation))
+
+prod_df |>
+  ggplot() + 
+  geom_series_circles(aes(inflation, good), color = "white", linewdith = 2.5) + 
+  coord_equal() + 
+  theme_minimal()
+```
+
+Of course, there are a mapping argument `fill` to  drive each category filling color.
+
+```{r}
+prod_df |>
+  ggplot() + 
+  geom_series_circles(aes(inflation, good, fill = good),color = "black", linewdith = 2.5) + 
+  coord_equal() + 
+  theme_minimal()
+```
+
+Of course, y ou can choose, to customize the categories labels by setting `axis.text` in `theme_*()` function.   But the need can come to add labels at series of circles ending positions. There comes `geom_series_text()` functions.
+
+```{r}
+prod_df |>
+  ggplot() + 
+  geom_series_circles(aes(inflation, good, fill = good),color = "black", linewdith = 2.5) + 
+  geom_series_text(aes(inflation, good, label = inflation)) + 
+  coord_equal() + 
+  theme_minimal()
+```
+
 - Two  series of circles combination
 
-###  `geom_pie`
+###  `geom_pie` 
 
+- Example with spotlight_max 
+- Example with spotlight_position (all the four)
+- Example with spotlight_cat
 - Example with labels 
 - Labels with ticks 
 
