@@ -10,7 +10,7 @@ geom_series_circles(
   show.legend = NA,
   na.rm = FALSE,
   inherit.aes = TRUE,
-  angle = 0,
+  init_angle = 0,
   r = 0.5,
   ...
 )
@@ -35,7 +35,7 @@ a warning. If \code{TRUE}, missing values are silently removed.}
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them.}
 
-\item{angle}{Circle drawing starting angle.}
+\item{init_angle}{Circle drawing starting angle.}
 
 \item{r}{Circle radius, should be <= 0.5.}
 

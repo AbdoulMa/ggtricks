@@ -64,7 +64,7 @@ GeomSeriesCircles <- ggplot2::ggproto("GeomSeriesCircles", ggplot2::GeomPolygon,
 #'   default), it is combined with the default mapping at the top level of the
 #'   plot. You must supply `mapping` if there is no plot mapping.
 #' @param data to be displayed in this layer
-#' @param angle Circle drawing starting angle.
+#' @param init_angle Circle drawing starting angle.
 #' @param r Circle radius, should be <= 0.5.
 #' @param color Color of circles/fragments of circles borders.
 #' @param  fill Color to fill circles/fragments of circles with. This parameter
@@ -92,7 +92,7 @@ GeomSeriesCircles <- ggplot2::ggproto("GeomSeriesCircles", ggplot2::GeomPolygon,
 geom_series_circles <-  function(mapping = NULL, data = NULL,
                                show.legend = NA,
                                na.rm = FALSE, inherit.aes = TRUE,
-                               angle = 0, r = .5, ...) {
+                               init_angle = 0, r = .5, ...) {
   ggplot2::layer(
     data = data,
     mapping = mapping,
@@ -101,7 +101,7 @@ geom_series_circles <-  function(mapping = NULL, data = NULL,
     position = "identity",
     show.legend =  show.legend,
     inherit.aes = inherit.aes,
-    params = list(na.rm = na.rm, angle = angle, r = r, ...)
+    params = list(na.rm = na.rm, init_angle = init_angle, r = r, ...)
   )
 }
 

@@ -56,9 +56,9 @@ StatSeriesCircles <- ggplot2::ggproto("StatsSeriesCircles", ggplot2::Stat,
                                       df
                                       # Data from here is passed to compute_group
                                     },
-                                    compute_group = function(data, scales, angle = 0, r = .5, x_discrete = T, y_discrete = F) {
+                                    compute_group = function(data, scales, init_angle = 0, r = .5, x_discrete = T, y_discrete = F) {
                                       # Convert angle from deg to rad
-                                      angle <- angle * pi / 180
+                                      init_angle <- init_angle * pi / 180
                                       # Base R Approach
                                       circle_data <- data
                                       circle_data$nb_circles <- ifelse(x_discrete, circle_data$y %/% 1, circle_data$x %/% 1)
@@ -85,8 +85,8 @@ StatSeriesCircles <- ggplot2::ggproto("StatsSeriesCircles", ggplot2::Stat,
 
                                           final_angle <- (circles_values*2*pi)/prop_val
                                           nb_points_to <- (n*final_angle) %/% (2*pi)
-                                          x_pos <- c(r*cos((0:nb_points_to)*(2*pi/n) + angle), r*cos(final_angle + angle))
-                                          y_pos <- c(r*sin((0:nb_points_to)*(2*pi/n) + angle), r*sin(final_angle + angle))
+                                          x_pos <- c(r*cos((0:nb_points_to)*(2*pi/n) + init_angle), r*cos(final_angle + init_angle))
+                                          y_pos <- c(r*sin((0:nb_points_to)*(2*pi/n) + init_angle), r*sin(final_angle + init_angle))
                                           if (circles_values != 1) {
                                             x_pos <- c(0, x_pos)
                                             y_pos <- c(0, y_pos)
@@ -114,7 +114,7 @@ StatSeriesCircles <- ggplot2::ggproto("StatsSeriesCircles", ggplot2::Stat,
 stat_series_circles <- function(mapping = NULL, data = NULL, geom = "series_circles",
                               position = "identity", show.legend = NA, na.rm = FALSE,
                               inherit.aes = TRUE,
-                              angle = NULL,
+                              init_angle = NULL,
                               r = NA,
                               ...) {
   ggplot2::layer(
@@ -126,7 +126,7 @@ stat_series_circles <- function(mapping = NULL, data = NULL, geom = "series_circ
     show.legend = show.legend,
     inherit.aes = inherit.aes,
     params = list(na.rm = na.rm,
-                  angle = angle,
+                  init_angle = init_angle,
                   r = r,
                   ...)
   )

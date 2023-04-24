@@ -6,12 +6,15 @@
 \alias{ggtricks-package}
 \title{ggtricks: Create Sector and Other Charts Easily Using Grammar of Graphics}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 A collection of several geom to create graphics, using "ggplot2" and the Cartesian coordinate system. You use the familiar mapping 'Grammar of Graphics' without the need to do another transformation into polar cordinates.
 }
 \seealso{
 Useful links:
 \itemize{
   \item \url{https://github.com/AbdoulMa/ggtricks}
+  \item \url{https://abdoulma.github.io/ggtricks/}
   \item Report bugs at \url{https://github.com/AbdoulMa/ggtricks/issues}
 }
 

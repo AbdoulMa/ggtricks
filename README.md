@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+# ggtricks <a href="https://abdoulma.github.io/ggtricks/"><img src="man/figures/logo.png" align="right" height="137" /></a>
+
 # ggtricks
 
 <!-- badges: start -->
@@ -50,16 +52,6 @@ devtools::install_github("abdoulma/ggtricks")
 
 ``` r
 library(tidyverse)
-#> ── Attaching core tidyverse packages ──────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
-#> ✔ dplyr     1.1.1     ✔ readr     2.1.4
-#> ✔ forcats   1.0.0     ✔ stringr   1.5.0
-#> ✔ ggplot2   3.4.1     ✔ tibble    3.2.1
-#> ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-#> ✔ purrr     1.0.1     
-#> ── Conflicts ────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-#> ✖ dplyr::filter() masks stats::filter()
-#> ✖ dplyr::lag()    masks stats::lag()
-#> ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 library(ggtricks)
 prod_df <- data.frame(
   good = c("Chicken", "Eggs", "Meats"), 
@@ -91,12 +83,10 @@ prod_df |>
 
 <img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
 
-Of course, y ou can choose, to customize the categories labels by
-setting `axis.text` in `theme_*()` function. But the need can come to
-add labels at series of circles ending positions. There comes
-`geom_series_text()` functions.
-
-- Two series of circles combination
+Of course, you can choose, to customize the categories labels by setting
+`axis.text` in `theme_*()` function. But the need can come to add labels
+at series of circles ending positions. There comes `geom_series_text()`
+functions.
 
 ``` r
 prod_df |>
@@ -108,6 +98,39 @@ prod_df |>
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+
+You can set `angle` to define fragment of circle starting angle.
+
+``` r
+index_df <- tribble( 
+  ~article, ~index, 
+  "Plate beef", 187, 
+  "Bacon", 215, 
+  "Lard", 266
+  )
+
+index_df <- index_df |> 
+  mutate(
+    index =  index / 100
+  )
+
+index_df |> 
+  ggplot() + 
+  geom_series_circles(aes(index, article),
+                      angle = 60
+                      # angle = 60
+                      # angle = 60
+                      # angle = 60
+                      ) + 
+  coord_equal() +
+  theme_minimal()
+```
+
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+
+![](https://abdoul-dataviz-portfolio.s3.eu-west-3.amazonaws.com/png/tidytuesday_2023_w14.png)
+
+- Two series of circles combination
 
 ### `geom_pie`
 
