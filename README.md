@@ -13,8 +13,8 @@ status](https://www.r-pkg.org/badges/version/ggtricks)](https://CRAN.R-project.o
 coverage](https://codecov.io/gh/AbdoulMa/ggtricks/branch/main/graph/badge.svg)](https://app.codecov.io/gh/AbdoulMa/ggtricks?branch=main)
 <!-- badges: end -->
 
-{ggtricks} package is a collection of multiple geom presenting data in
-the form of circle (at the moment, but many more to come and not only
+**{ggtricks}** package is a collection of multiple geom presenting data
+in the form of circle (at the moment, but many more to come and not only
 circle oriented.) using grammar of graphics philosophy and Cartesian
 coordinates system.
 
@@ -99,7 +99,7 @@ prod_df |>
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
-You can set `angle` to define fragment of circle starting angle.
+You can set `init_angle` to define fragment of circle starting angle.
 
 ``` r
 index_df <- tribble( 
@@ -117,68 +117,256 @@ index_df <- index_df |>
 index_df |> 
   ggplot() + 
   geom_series_circles(aes(index, article),
-                      angle = 60
-                      # angle = 60
-                      # angle = 60
-                      # angle = 60
+                      init_angle = 45
+                      # init_angle = 90
+                      # init_angle = 145
+                      # init_angle = 180
                       ) + 
   coord_equal() +
   theme_minimal()
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
-
-![](https://abdoul-dataviz-portfolio.s3.eu-west-3.amazonaws.com/png/tidytuesday_2023_w14.png)
+<!-- TODO Put the facet
+![]() -->
 
 - Two series of circles combination
 
 ### `geom_pie`
 
-- Example with spotlight_max
-- Example with spotlight_position (all the four)
-- Example with spotlight_cat
-- Example with labels
-- Labels with ticks
+- `init_angle` As for `geom_series_circles()`, you can set the init
+  angle parameter to define the starting angle of you pie (here the
+  `pie`, but it is also available for `donut`, `slice` and
+  `donut_slice`.)
+
+``` r
+my_df <- data.frame(
+  cat = paste0("Prod ",  1:4), 
+   val = c( 87,34,21,8)
+)
+
+categories_fills <- c(
+  "Prod 1" = "#3E71EC",
+  "Prod 2" = "#A9A9A9",
+  "Prod 3" = "#7942A6",
+  "Prod 4" = "#F7324B"
+)
+```
+
+``` r
+my_df |>
+  ggplot() + 
+  geom_pie(aes(cat = cat, val = val, fill = cat), 
+            init_angle = 0
+            # init_angle = 60,
+            # init_angle = 120,
+            # init_angle = 180
+           ) + 
+  coord_equal() +
+  scale_fill_manual(
+    values = categories_fills
+  ) +
+  theme_minimal()
+```
+
+![](man/figures/pie_facets_angle_montage.png)
+
+- `spotlight_max` & `spotlight_position` If you want the category with
+  the max value to drive the slices positions, you cant set the
+  `spotlight_max` parameter to `true`. Then the category with the max
+  value will be placed at `spotlight_position` (default `top`, others
+  possibles values are: `right`, `bottom` and `left`.)
+
+``` r
+my_df |>
+  ggplot() + 
+  geom_pie(aes(cat = cat, val = val), spotlight_max = TRUE,
+           spotlight_position = "top",
+           # spotlight_position = "right"
+           # spotlight_position = "bottom"
+           # spotlight_position = "left"
+  ) + 
+  coord_equal() + 
+  scale_fill_manual(
+    values = categories_fills
+  ) +
+  theme_minimal()
+```
+
+![Spotlight max
+positions](man/figures/pie_facets_spotlight_max_montage.png)
+
+- `spotlight_cat` Maybe, you want specific category to drive the slices
+  positions rather than the category with the max value ? Then come the
+  `spotlight_cat` parameter to define the driving category. Here too,
+  you can combine the `spotlight_cat` parameter value with
+  `spotlight_position` to specify its position.
+
+``` r
+my_df |>  
+  ggplot() + 
+  geom_pie(aes(cat = cat, val = val, fill = cat),
+           spotlight_cat = "Prod 1",
+           spotlight_position = "top"
+           ) +
+  coord_equal() + 
+   scale_fill_manual(
+      values = categories_fills, 
+      guide = "none"
+    ) +
+  theme_minimal()
+```
+
+<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" />
+
+- `labels`
+
+As I know that it can be tricky to know the coordinates of the positions
+of the center of categories slices, I define a default mapping `labels`
+that will place the provided labels at that position. When `labels`
+mapping is defined, you can set `labels_with_tick` parameters to `TRUE`
+to add ticks at slices centers positions.
+
+``` r
+my_df |> 
+  ggplot() + 
+  geom_pie(aes(cat = cat, val = val, fill = cat, label = cat)
+           # labels_with_ticks = TRUE
+           ) + 
+  coord_equal() + 
+   scale_fill_manual(
+      values = categories_fills, 
+      guide = "none"
+    ) +
+  theme_minimal()
+```
+
+![Labels with(out) ticks](man/figures/pie_facets_ticks_montage.png)
 
 ### `geom_donut`
 
+Donut is just pie with an hole. There are two parameters `r1` and `r2`
+to set donut thickness.
+
+``` r
+my_df |> 
+  ggplot() + 
+  geom_donut(aes(cat = cat, val = val, fill = cat), 
+           r1 =  1 , r2 = .65      
+           # r1 =  1 , r2 = .35
+           ) + 
+  coord_equal() + 
+   scale_fill_manual(
+      values = categories_fills, 
+      guide = "none"
+    ) +
+  theme_minimal()
+```
+
+![](man/figures/donuts_facets_montage.png)
+
+All the others parameters available for `geom_pie` are here too.
+
 ### `geom_slice`
+
+It is a portion of pie, by default an half (180 deg). You can set the
+`slice_angle` portion yo fit your need.
+
+``` r
+my_df |> 
+  ggplot() + 
+  geom_slice(aes(cat = cat, val = val, fill = cat), 
+             slice_angle = 180#,
+             # slice_angle = 120 
+             ) + 
+  coord_equal() + 
+   scale_fill_manual(
+      values = categories_fills, 
+      guide = "none"
+    ) +
+  theme_minimal()
+```
+
+![Slices plots with different
+angles](man/figures/slice_facets_angle_montage.png)
+
+Here too, you can set the starting angle position with `init_angle`.
+Note here that there are not `spotlight_max`, `spotlight_cat`
+parameters, as we are not drawing a complete circle (but theoretically
+you can, if you set `slice_angle` to 360, which means a `pie`.)
+
+``` r
+my_df |> 
+  ggplot() + 
+  geom_slice(aes(cat = cat, val = val, fill = cat), 
+             init_angle = 30#,
+             # init_angle = 90 
+             ) + 
+  coord_equal() + 
+   scale_fill_manual(
+      values = categories_fills, 
+      guide = "none"
+    ) +
+  theme_minimal()
+```
+
+![Slice plots with different init
+angles](man/figures/slice_facets_init_angle_montage.png)
+
+You can however set the slice position with `slice_position`(possible
+values are: `top`, `right`, `bottom`, and `left`). Soon, I will post
+more detailed examples on the package website :
+<https://www.abdoulma.github.io/ggtricks>.
 
 ### `geom_donut_slice`
 
-This is a basic example which shows you how to solve a common problem:
+It is a slice of donut plot. As `geom_donut`, it is driven by 2 radii
+and as a slice plot, it has a defined slice angle.
 
 ``` r
-library(ggtricks)
-## basic example code
+my_df |> 
+  ggplot() + 
+  geom_donut_slice(aes(cat = cat, val = val, fill = cat), 
+             r1 = 1, r2  = .65
+             # r1 = 1, r2  = .35,
+             # slice_angle = 90 
+             # slice_angle = 120 
+             # slice_angle = 180 
+             ) + 
+  coord_equal() + 
+   scale_fill_manual(
+      values = categories_fills, 
+      guide = "none"
+    ) +
+  theme_minimal()
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+![Donut slice plots with different
+angles](man/figures/donut_slice_facets_angle_montage.png)
+
+`geom_slice_donut` has also special parameter `link_with_origin`,if you
+want to connect the donut slice limits with origin.
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+my_df |> 
+  ggplot() + 
+  geom_donut_slice(aes(cat = cat, val = val, fill = cat), 
+             r1 = 1, r2  = .65,
+             slice_angle = 120,
+             slice_position = "top",
+             link_with_origin = TRUE
+             ) + 
+  coord_equal(clip = "off") +
+   scale_fill_manual(
+      values = categories_fills, 
+      guide = "none"
+    ) +
+  theme_minimal()
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
+<img src="man/figures/README-unnamed-chunk-15-1.png" width="100%" />
 
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+    #> [1] 0.8660254
+    #> [1] 0.5
 
 ## Limitations
 
@@ -200,12 +388,21 @@ function, **you should not**, or not in the way you are thinking about.
 
 As we use `coord_equal()`, you won’t be able to set `scales` parameter,
 what I strongly suspect you to try to do. So for the moment, I don’t
-recommend you to do so. Although, I give some tips to go through those
-restrictions on package website
+recommend you to do so. Although, I will give some tips to go through
+those restrictions on package website
 <https://www.abdoulma.github.io/ggtricks>
 
 ## Roadmap
 
-Detach spotlighted category Variate radius for categories representation
-Label displaying in mapping (choose category we want to display) Special
-key draw for pie and slices and another one for donut and donut_slice
+In the following weeks, additional features will be added to current
+`geoms`:
+
+- Detach spotlighted category
+- Variate radius for categories representation
+- Label displaying in mapping (choose categories we want to display)
+- Special key draw for pie and slice and another one for `donut` and
+  `donut_slice`.
+
+As announced at start, I don’t limit the package to sector charts, so
+additional `geom` styles will be added, and if you have suppositions,
+fee free to open an issue, I am open to all contributions.
