@@ -72,7 +72,7 @@ prod_df <- prod_df |>
 
 prod_df |>
   ggplot() + 
-  geom_series_circles(aes(inflation, good), color = "white", linewdith = 2.5) + 
+  geom_series_circles(aes(inflation, good), color = "white", linewidth = 2.5) + 
   coord_equal() + 
   theme_minimal()
 ```
@@ -82,7 +82,7 @@ Of course, there are a mapping argument `fill` to  drive each category filling c
 ```{r}
 prod_df |>
   ggplot() + 
-  geom_series_circles(aes(inflation, good, fill = good),color = "black", linewdith = 2.5) + 
+  geom_series_circles(aes(inflation, good, fill = good),color = "black", linewidth = 2.5) + 
   coord_equal() + 
   theme_minimal()
 ```

@@ -63,7 +63,7 @@ prod_df <- prod_df |>
 
 prod_df |>
   ggplot() + 
-  geom_series_circles(aes(inflation, good), color = "white", linewdith = 2.5) + 
+  geom_series_circles(aes(inflation, good), color = "white", linewidth = 2.5) + 
   coord_equal() + 
   theme_minimal()
 ```
@@ -76,7 +76,7 @@ filling color.
 ``` r
 prod_df |>
   ggplot() + 
-  geom_series_circles(aes(inflation, good, fill = good),color = "black", linewdith = 2.5) + 
+  geom_series_circles(aes(inflation, good, fill = good),color = "black", linewidth = 2.5) + 
   coord_equal() + 
   theme_minimal()
 ```
