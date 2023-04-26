@@ -88,7 +88,7 @@
 </h1>
 <!-- badges: start -->
 
-<p>{ggtricks} package is a collection of multiple geom presenting data in the form of circle (at the moment, but many more to come and not only circle oriented.) using grammar of graphics philosophy and Cartesian coordinates system.</p>
+<p><strong>{ggtricks}</strong> package is a collection of multiple geom presenting data in the form of circle (at the moment, but many more to come and not only circle oriented.) using grammar of graphics philosophy and Cartesian coordinates system.</p>
 <p>You have bench of functions to make sector charts where circle is divided along it radii, so each section is proportional to value it represents.</p>
 <ul>
 <li>
@@ -133,7 +133,7 @@
 <span></span>
 <span><span class="va">prod_df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="reference/geom_series_circles.html">geom_series_circles</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">inflation</span>, <span class="va">good</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"white"</span>, linewdith <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="reference/geom_series_circles.html">geom_series_circles</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">inflation</span>, <span class="va">good</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"white"</span>, linewidth <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="100%"></p>
@@ -141,7 +141,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">prod_df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>  <span class="fu"><a href="reference/geom_series_circles.html">geom_series_circles</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">inflation</span>, <span class="va">good</span>, fill <span class="op">=</span> <span class="va">good</span><span class="op">)</span>,color <span class="op">=</span> <span class="st">"black"</span>, linewdith <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="reference/geom_series_circles.html">geom_series_circles</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">inflation</span>, <span class="va">good</span>, fill <span class="op">=</span> <span class="va">good</span><span class="op">)</span>,color <span class="op">=</span> <span class="st">"black"</span>, linewidth <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="100%"></p>
@@ -154,7 +154,7 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-4-1.png" width="100%"></p>
-<p>You can set <code>angle</code> to define fragment of circle starting angle.</p>
+<p>You can set <code>init_angle</code> to define fragment of circle starting angle.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">index_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span> </span>
 <span>  <span class="op">~</span><span class="va">article</span>, <span class="op">~</span><span class="va">index</span>, </span>
@@ -171,15 +171,15 @@
 <span><span class="va">index_df</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="reference/geom_series_circles.html">geom_series_circles</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">index</span>, <span class="va">article</span><span class="op">)</span>,</span>
-<span>                      angle <span class="op">=</span> <span class="fl">60</span></span>
-<span>                      <span class="co"># angle = 60</span></span>
-<span>                      <span class="co"># angle = 60</span></span>
-<span>                      <span class="co"># angle = 60</span></span>
+<span>                      init_angle <span class="op">=</span> <span class="fl">45</span></span>
+<span>                      <span class="co"># init_angle = 90</span></span>
+<span>                      <span class="co"># init_angle = 145</span></span>
+<span>                      <span class="co"># init_angle = 180</span></span>
 <span>                      <span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-5-1.png" width="100%"></p>
-<p><img src="https://abdoul-dataviz-portfolio.s3.eu-west-3.amazonaws.com/png/tidytuesday_2023_w14.png"></p>
+<!-- TODO Put the facet
+![]() -->
 <ul>
 <li>Two series of circles combination</li>
 </ul>
@@ -189,45 +189,199 @@
 <code>geom_pie</code><a class="anchor" aria-label="anchor" href="#geom_pie"></a>
 </h3>
 <ul>
-<li>Example with spotlight_max</li>
-<li>Example with spotlight_position (all the four)</li>
-<li>Example with spotlight_cat</li>
-<li>Example with labels</li>
-<li>Labels with ticks</li>
+<li>
+<code>init_angle</code> As for <code><a href="reference/geom_series_circles.html">geom_series_circles()</a></code>, you can set the init angle parameter to define the starting angle of you pie (here the <code>pie</code>, but it is also available for <code>donut</code>, <code>slice</code> and <code>donut_slice</code>.)</li>
 </ul>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  cat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Prod "</span>,  <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>, </span>
+<span>   val <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span> <span class="fl">87</span>,<span class="fl">34</span>,<span class="fl">21</span>,<span class="fl">8</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">categories_fills</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>  <span class="st">"Prod 1"</span> <span class="op">=</span> <span class="st">"#3E71EC"</span>,</span>
+<span>  <span class="st">"Prod 2"</span> <span class="op">=</span> <span class="st">"#A9A9A9"</span>,</span>
+<span>  <span class="st">"Prod 3"</span> <span class="op">=</span> <span class="st">"#7942A6"</span>,</span>
+<span>  <span class="st">"Prod 4"</span> <span class="op">=</span> <span class="st">"#F7324B"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="reference/geom_pie.html">geom_pie</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>cat <span class="op">=</span> <span class="va">cat</span>, val <span class="op">=</span> <span class="va">val</span>, fill <span class="op">=</span> <span class="va">cat</span><span class="op">)</span>, </span>
+<span>            init_angle <span class="op">=</span> <span class="fl">0</span></span>
+<span>            <span class="co"># init_angle = 60,</span></span>
+<span>            <span class="co"># init_angle = 120,</span></span>
+<span>            <span class="co"># init_angle = 180</span></span>
+<span>           <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span></span>
+<span>    values <span class="op">=</span> <span class="va">categories_fills</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/pie_facets_angle_montage.png"></p>
+<ul>
+<li>
+<code>spotlight_max</code> &amp; <code>spotlight_position</code> If you want the category with the max value to drive the slices positions, you cant set the <code>spotlight_max</code> parameter to <code>true</code>. Then the category with the max value will be placed at <code>spotlight_position</code> (default <code>top</code>, others possibles values are: <code>right</code>, <code>bottom</code> and <code>left</code>.)</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="reference/geom_pie.html">geom_pie</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>cat <span class="op">=</span> <span class="va">cat</span>, val <span class="op">=</span> <span class="va">val</span><span class="op">)</span>, spotlight_max <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>           spotlight_position <span class="op">=</span> <span class="st">"top"</span>,</span>
+<span>           <span class="co"># spotlight_position = "right"</span></span>
+<span>           <span class="co"># spotlight_position = "bottom"</span></span>
+<span>           <span class="co"># spotlight_position = "left"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span></span>
+<span>    values <span class="op">=</span> <span class="va">categories_fills</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<img src="reference/figures/pie_facets_spotlight_max_montage.png" alt=""><p class="caption">Spotlight max positions</p>
+</div>
+<ul>
+<li>
+<code>spotlight_cat</code> Maybe, you want specific category to drive the slices positions rather than the category with the max value ? Then come the <code>spotlight_cat</code> parameter to define the driving category. Here too, you can combine the <code>spotlight_cat</code> parameter value with <code>spotlight_position</code> to specify its position.</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_df</span> <span class="op">|&gt;</span>  </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="reference/geom_pie.html">geom_pie</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>cat <span class="op">=</span> <span class="va">cat</span>, val <span class="op">=</span> <span class="va">val</span>, fill <span class="op">=</span> <span class="va">cat</span><span class="op">)</span>,</span>
+<span>           spotlight_cat <span class="op">=</span> <span class="st">"Prod 1"</span>,</span>
+<span>           spotlight_position <span class="op">=</span> <span class="st">"top"</span></span>
+<span>           <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span></span>
+<span>      values <span class="op">=</span> <span class="va">categories_fills</span>, </span>
+<span>      guide <span class="op">=</span> <span class="st">"none"</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-9-1.png" width="100%"></p>
+<ul>
+<li><code>labels</code></li>
+</ul>
+<p>As I know that it can be tricky to know the coordinates of the positions of the center of categories slices, I define a default mapping <code>labels</code> that will place the provided labels at that position. When <code>labels</code> mapping is defined, you can set <code>labels_with_tick</code> parameters to <code>TRUE</code> to add ticks at slices centers positions.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_df</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="reference/geom_pie.html">geom_pie</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>cat <span class="op">=</span> <span class="va">cat</span>, val <span class="op">=</span> <span class="va">val</span>, fill <span class="op">=</span> <span class="va">cat</span>, label <span class="op">=</span> <span class="va">cat</span><span class="op">)</span></span>
+<span>           <span class="co"># labels_with_ticks = TRUE</span></span>
+<span>           <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span></span>
+<span>      values <span class="op">=</span> <span class="va">categories_fills</span>, </span>
+<span>      guide <span class="op">=</span> <span class="st">"none"</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<img src="reference/figures/pie_facets_ticks_montage.png" alt=""><p class="caption">Labels with(out) ticks</p>
+</div>
 </div>
 <div class="section level3">
 <h3 id="geom_donut">
 <code>geom_donut</code><a class="anchor" aria-label="anchor" href="#geom_donut"></a>
 </h3>
+<p>Donut is just pie with an hole. There are two parameters <code>r1</code> and <code>r2</code> to set donut thickness.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_df</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="reference/geom_donut.html">geom_donut</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>cat <span class="op">=</span> <span class="va">cat</span>, val <span class="op">=</span> <span class="va">val</span>, fill <span class="op">=</span> <span class="va">cat</span><span class="op">)</span>, </span>
+<span>           r1 <span class="op">=</span>  <span class="fl">1</span> , r2 <span class="op">=</span> <span class="fl">.65</span>      </span>
+<span>           <span class="co"># r1 =  1 , r2 = .35</span></span>
+<span>           <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span></span>
+<span>      values <span class="op">=</span> <span class="va">categories_fills</span>, </span>
+<span>      guide <span class="op">=</span> <span class="st">"none"</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/donuts_facets_montage.png"></p>
+<p>All the others parameters available for <code>geom_pie</code> are here too.</p>
 </div>
 <div class="section level3">
 <h3 id="geom_slice">
 <code>geom_slice</code><a class="anchor" aria-label="anchor" href="#geom_slice"></a>
 </h3>
+<p>It is a portion of pie, by default an half (180 deg). You can set the <code>slice_angle</code> portion yo fit your need.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_df</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="reference/geom_slice.html">geom_slice</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>cat <span class="op">=</span> <span class="va">cat</span>, val <span class="op">=</span> <span class="va">val</span>, fill <span class="op">=</span> <span class="va">cat</span><span class="op">)</span>, </span>
+<span>             slice_angle <span class="op">=</span> <span class="fl">180</span><span class="co">#,</span></span>
+<span>             <span class="co"># slice_angle = 120 </span></span>
+<span>             <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span></span>
+<span>      values <span class="op">=</span> <span class="va">categories_fills</span>, </span>
+<span>      guide <span class="op">=</span> <span class="st">"none"</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<img src="reference/figures/slice_facets_angle_montage.png" alt=""><p class="caption">Slices plots with different angles</p>
+</div>
+<p>Here too, you can set the starting angle position with <code>init_angle</code>. Note here that there are not <code>spotlight_max</code>, <code>spotlight_cat</code> parameters, as we are not drawing a complete circle (but theoretically you can, if you set <code>slice_angle</code> to 360, which means a <code>pie</code>.)</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_df</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="reference/geom_slice.html">geom_slice</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>cat <span class="op">=</span> <span class="va">cat</span>, val <span class="op">=</span> <span class="va">val</span>, fill <span class="op">=</span> <span class="va">cat</span><span class="op">)</span>, </span>
+<span>             init_angle <span class="op">=</span> <span class="fl">30</span><span class="co">#,</span></span>
+<span>             <span class="co"># init_angle = 90 </span></span>
+<span>             <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span></span>
+<span>      values <span class="op">=</span> <span class="va">categories_fills</span>, </span>
+<span>      guide <span class="op">=</span> <span class="st">"none"</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<img src="reference/figures/slice_facets_init_angle_montage.png" alt=""><p class="caption">Slice plots with different init angles</p>
+</div>
+<p>You can however set the slice position with <code>slice_position</code>(possible values are: <code>top</code>, <code>right</code>, <code>bottom</code>, and <code>left</code>). Soon, I will post more detailed examples on the package website : <a href="https://www.abdoulma.github.io/ggtricks" class="external-link uri">https://www.abdoulma.github.io/ggtricks</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="geom_donut_slice">
 <code>geom_donut_slice</code><a class="anchor" aria-label="anchor" href="#geom_donut_slice"></a>
 </h3>
-<p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/AbdoulMa/ggtricks" class="external-link">ggtricks</a></span><span class="op">)</span></span>
-<span><span class="co">## basic example code</span></span></code></pre></div>
-<p>What is special about using <code>README.Rmd</code> instead of just <code>README.md</code>? You can include R chunks like so:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cars</span><span class="op">)</span></span>
-<span><span class="co">#&gt;      speed           dist       </span></span>
-<span><span class="co">#&gt;  Min.   : 4.0   Min.   :  2.00  </span></span>
-<span><span class="co">#&gt;  1st Qu.:12.0   1st Qu.: 26.00  </span></span>
-<span><span class="co">#&gt;  Median :15.0   Median : 36.00  </span></span>
-<span><span class="co">#&gt;  Mean   :15.4   Mean   : 42.98  </span></span>
-<span><span class="co">#&gt;  3rd Qu.:19.0   3rd Qu.: 56.00  </span></span>
-<span><span class="co">#&gt;  Max.   :25.0   Max.   :120.00</span></span></code></pre></div>
-<p>You’ll still need to render <code>README.Rmd</code> regularly, to keep <code>README.md</code> up-to-date. <code>devtools::build_readme()</code> is handy for this. You could also use GitHub Actions to re-render <code>README.Rmd</code> every time you push. An example workflow can be found here: <a href="https://github.com/r-lib/actions/tree/v1/examples" class="external-link uri">https://github.com/r-lib/actions/tree/v1/examples</a>.</p>
-<p>You can also embed plots, for example:</p>
-<p><img src="reference/figures/README-pressure-1.png" width="100%"></p>
-<p>In that case, don’t forget to commit and push the resulting figure files, so they display on GitHub and CRAN.</p>
+<p>It is a slice of donut plot. As <code>geom_donut</code>, it is driven by 2 radii and as a slice plot, it has a defined slice angle.</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_df</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="reference/geom_donut_slice.html">geom_donut_slice</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>cat <span class="op">=</span> <span class="va">cat</span>, val <span class="op">=</span> <span class="va">val</span>, fill <span class="op">=</span> <span class="va">cat</span><span class="op">)</span>, </span>
+<span>             r1 <span class="op">=</span> <span class="fl">1</span>, r2  <span class="op">=</span> <span class="fl">.65</span></span>
+<span>             <span class="co"># r1 = 1, r2  = .35,</span></span>
+<span>             <span class="co"># slice_angle = 90 </span></span>
+<span>             <span class="co"># slice_angle = 120 </span></span>
+<span>             <span class="co"># slice_angle = 180 </span></span>
+<span>             <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span></span>
+<span>      values <span class="op">=</span> <span class="va">categories_fills</span>, </span>
+<span>      guide <span class="op">=</span> <span class="st">"none"</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="figure">
+<img src="reference/figures/donut_slice_facets_angle_montage.png" alt=""><p class="caption">Donut slice plots with different angles</p>
+</div>
+<p><code>geom_slice_donut</code> has also special parameter <code>link_with_origin</code>,if you want to connect the donut slice limits with origin.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_df</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="reference/geom_donut_slice.html">geom_donut_slice</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>cat <span class="op">=</span> <span class="va">cat</span>, val <span class="op">=</span> <span class="va">val</span>, fill <span class="op">=</span> <span class="va">cat</span><span class="op">)</span>, </span>
+<span>             r1 <span class="op">=</span> <span class="fl">1</span>, r2  <span class="op">=</span> <span class="fl">.65</span>,</span>
+<span>             slice_angle <span class="op">=</span> <span class="fl">120</span>,</span>
+<span>             slice_position <span class="op">=</span> <span class="st">"top"</span>,</span>
+<span>             link_with_origin <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>             <span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span>clip <span class="op">=</span> <span class="st">"off"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span></span>
+<span>      values <span class="op">=</span> <span class="va">categories_fills</span>, </span>
+<span>      guide <span class="op">=</span> <span class="st">"none"</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-15-1.png" width="100%"></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.8660254</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.5</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -239,12 +393,19 @@
 </blockquote>
 <p>according to the official <a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">documentation</a>. Of course, you shouldn’t edit the default <code>ratio = 1</code> that ensures that one unit on <code>x-axis</code> is the same length as one unit on the <code>y-axis</code>.</p>
 <p>When using <code>geom_serie_circle()</code>, the desire will come one day to combine it with <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap()</a></code> or <code>facet_grid</code> or whatever faceting function, <strong>you should not</strong>, or not in the way you are thinking about.</p>
-<p>As we use <code><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal()</a></code>, you won’t be able to set <code>scales</code> parameter, what I strongly suspect you to try to do. So for the moment, I don’t recommend you to do so. Although, I give some tips to go through those restrictions on package website <a href="https://www.abdoulma.github.io/ggtricks" class="external-link uri">https://www.abdoulma.github.io/ggtricks</a></p>
+<p>As we use <code><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal()</a></code>, you won’t be able to set <code>scales</code> parameter, what I strongly suspect you to try to do. So for the moment, I don’t recommend you to do so. Although, I will give some tips to go through those restrictions on package website <a href="https://www.abdoulma.github.io/ggtricks" class="external-link uri">https://www.abdoulma.github.io/ggtricks</a></p>
 </div>
 <div class="section level2">
 <h2 id="roadmap">Roadmap<a class="anchor" aria-label="anchor" href="#roadmap"></a>
 </h2>
-<p>Detach spotlighted category Variate radius for categories representation Label displaying in mapping (choose category we want to display) Special key draw for pie and slices and another one for donut and donut_slice</p>
+<p>In the following weeks, additional features will be added to current <code>geoms</code>:</p>
+<ul>
+<li>Detach spotlighted category</li>
+<li>Variate radius for categories representation</li>
+<li>Label displaying in mapping (choose categories we want to display)</li>
+<li>Special key draw for pie and slice and another one for <code>donut</code> and <code>donut_slice</code>.</li>
+</ul>
+<p>As announced at start, I don’t limit the package to sector charts, so additional <code>geom</code> styles will be added, and if you have suppositions, fee free to open an issue, I am open to all contributions.</p>
 </div>
 </div>
 
