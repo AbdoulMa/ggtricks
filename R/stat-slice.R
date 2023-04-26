@@ -1,3 +1,4 @@
+#' See [ggplot2::Geom]
 #' @format NULL
 #' @usage NULL
 #' @export
@@ -52,8 +53,9 @@ StatSlice <- ggplot2::ggproto("StatSlice", ggplot2::Stat,
                      required_aes = c("cat", "val")
 )
 
-#' @format NULL
-#' @usage NULL
+#' See  [ggplot2::stat_identity]
+#' @inheritParams geom_slice
+#' @inheritParams ggplot2::stat_identity
 #' @export
 stat_slice <- function(mapping = NULL, data = NULL, geom = "slice",
                        position = "identity", show.legend = NA, na.rm = FALSE,

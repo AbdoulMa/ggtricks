@@ -32,6 +32,7 @@ draw_panel_function = function(data, panel_scales, coord, r = .5) {
   )
 }
 
+#' See [ggplot2::Geom]
 #' @format NULL
 #' @usage NULL
 #' @export
@@ -58,6 +59,9 @@ GeomSeriesCircles <- ggplot2::ggproto("GeomSeriesCircles", ggplot2::GeomPolygon,
 #' vector.
 #' - `y` A vector mapping the ordinate "y" axis. Either a numerical vector
 #' when `x` is a character vector. And vice versa.
+#' There is a default mapping `fill` with  value `black` to fill  circles/fragments
+#' of circles with it . It can be used in  `aes` mapping or as  a global argument
+#'  for all the circles.
 #'
 #' @param mapping Set of aesthetic mappings created by `aes()` or
 #'   `aes_()`. If specified and `inherit.aes = TRUE` (the
@@ -67,9 +71,8 @@ GeomSeriesCircles <- ggplot2::ggproto("GeomSeriesCircles", ggplot2::GeomPolygon,
 #' @param init_angle Circle drawing starting angle.
 #' @param r Circle radius, should be <= 0.5.
 #' @param color Color of circles/fragments of circles borders.
-#' @param  fill Color to fill circles/fragments of circles with. This parameter
+#'
 #' @param linewidth Size of circles/fragments of circles borders.
-#' can be used in  `aes` mapping or as  a global argument for all the circles.
 #' @param na.rm If `FALSE`, the default, missing values are removed with
 #'   a warning. If `TRUE`, missing values are silently removed.
 #' @param show.legend logical. Should this layer be included in the legends?
@@ -92,7 +95,7 @@ GeomSeriesCircles <- ggplot2::ggproto("GeomSeriesCircles", ggplot2::GeomPolygon,
 geom_series_circles <-  function(mapping = NULL, data = NULL,
                                show.legend = NA,
                                na.rm = FALSE, inherit.aes = TRUE,
-                               init_angle = 0, r = .5, ...) {
+                               init_angle = 0, r = .5, color = NA, linewidth = 0.5, ...) {
   ggplot2::layer(
     data = data,
     mapping = mapping,
@@ -101,7 +104,7 @@ geom_series_circles <-  function(mapping = NULL, data = NULL,
     position = "identity",
     show.legend =  show.legend,
     inherit.aes = inherit.aes,
-    params = list(na.rm = na.rm, init_angle = init_angle, r = r, ...)
+    params = list(na.rm = na.rm, init_angle = init_angle, r = r, color = color, linewidth = linewidth, ...)
   )
 }
 

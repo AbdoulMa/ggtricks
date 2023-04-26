@@ -100,6 +100,7 @@ draw_panel_function = function(data, panel_scales, coord,
   )
 }
 
+#' See [ggplot2::Geom]
 #' @usage NULL
 #' @format NULL
 #' @export

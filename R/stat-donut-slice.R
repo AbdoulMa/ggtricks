@@ -1,3 +1,4 @@
+#' See [ggplot2::Geom]
 #' @usage NULL
 #' @format NULL
 #' @export
@@ -75,8 +76,9 @@ StatDonutSlice <- ggplot2::ggproto("DonutSlice", ggplot2::Stat,
                           required_aes = c("cat", "val")
 )
 
-#' @usage NULL
-#' @format NULL
+#' See  [ggplot2::stat_identity]
+#' @inheritParams geom_donut_slice
+#' @inheritParams ggplot2::stat_identity
 #' @export
 stat_donut_slice <- function(mapping = NULL, data = NULL, geom = "donut_slice",
                              position = "identity", show.legend = NA, na.rm = FALSE,

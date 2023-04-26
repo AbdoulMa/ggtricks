@@ -12,6 +12,8 @@ geom_series_circles(
   inherit.aes = TRUE,
   init_angle = 0,
   r = 0.5,
+  color = NA,
+  linewidth = 0.5,
   ...
 )
 }
@@ -39,14 +41,11 @@ rather than combining with them.}
 
 \item{r}{Circle radius, should be <= 0.5.}
 
-\item{...}{other arguments passed on to \code{layer()}.}
-
 \item{color}{Color of circles/fragments of circles borders.}
 
-\item{fill}{Color to fill circles/fragments of circles with. This parameter}
+\item{linewidth}{Size of circles/fragments of circles borders.}
 
-\item{linewidth}{Size of circles/fragments of circles borders.
-can be used in  \code{aes} mapping or as  a global argument for all the circles.}
+\item{...}{other arguments passed on to \code{layer()}.}
 }
 \description{
 \code{geom_series_circles()} can be used as an alternative for
@@ -62,6 +61,9 @@ when \code{x} is a numerical vector. Either a numerical vector when \code{y} is 
 vector.
 \item \code{y} A vector mapping the ordinate "y" axis. Either a numerical vector
 when \code{x} is a character vector. And vice versa.
+There is a default mapping \code{fill} with  value \code{black} to fill  circles/fragments
+of circles with it . It can be used in  \code{aes} mapping or as  a global argument
+for all the circles.
 }
 }
 \examples{

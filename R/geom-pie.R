@@ -37,7 +37,8 @@
 #' @param inherit.aes If `FALSE`, overrides the default aesthetics,
 #'   rather than combining with them.
 #' @param ... other arguments passed on to `layer()`.
-common_doc <- function()
+#' @name common_doc
+# common_doc <- function()
 NULL
 
 draw_panel_function = function(data, panel_scales, coord,
@@ -121,7 +122,7 @@ draw_panel_function = function(data, panel_scales, coord,
   )
 }
 
-
+#' See [ggplot2::Geom]
 #' @format NULL
 #' @usage NULL
 #' @export

@@ -1,4 +1,7 @@
 # Serie circle ----
+#' See [ggplot2::Geom]
+#' @usage NULL
+#' @format NULL
 #' @export
 StatSeriesCircles <- ggplot2::ggproto("StatsSeriesCircles", ggplot2::Stat,
                                     setup_params = function(data, params) {
@@ -110,6 +113,9 @@ StatSeriesCircles <- ggplot2::ggproto("StatsSeriesCircles", ggplot2::Stat,
                                     required_aes = c("x", "y")
 )
 
+#' See  [ggplot2::stat_identity]
+#' @inheritParams geom_series_circles
+#' @inheritParams ggplot2::stat_identity
 #' @export
 stat_series_circles <- function(mapping = NULL, data = NULL, geom = "series_circles",
                               position = "identity", show.legend = NA, na.rm = FALSE,
@@ -133,6 +139,7 @@ stat_series_circles <- function(mapping = NULL, data = NULL, geom = "series_circ
 }
 
 # Serie Text ----
+#' See [ggplot2::Geom]
 #' @usage NULL
 #' @format NULL
 #' @export
@@ -171,6 +178,9 @@ StatSeriesText  <- ggplot2::ggproto("StatSeriesText", ggplot2::Stat,
 )
 
 
+#' See [ggplot2::stat_identity]
+#' @inheritParams geom_series_text
+#' @inheritParams ggplot2::stat_identity
 #' @export
 stat_series_text <- function(mapping = NULL, data = NULL, geom = "series_text",
                             position = "identity", show.legend = NA, na.rm = FALSE,

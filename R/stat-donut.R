@@ -1,3 +1,4 @@
+#' See [ggplot2::Geom]
 #' @format NULL
 #' @usage NULL
 #' @export
@@ -67,13 +68,13 @@ StatDonut <- ggplot2::ggproto("StatDonut", ggplot2::Stat,
                      required_aes = c("cat", "val")
 )
 
-#' @format NULL
-#' @usage NULL
+#' See [ggplot2::stat_identity]
+#' @inheritParams geom_donut
+#' @inheritParams ggplot2::stat_identity
 #' @export
 stat_donut <- function(mapping = NULL, data = NULL, geom = "donut",
                        position = "identity", show.legend = NA, na.rm = FALSE,
                        inherit.aes = TRUE,
-                       # angle = NULL,
                        ...) {
   ggplot2::layer(
     stat = StatDonut,
@@ -84,7 +85,6 @@ stat_donut <- function(mapping = NULL, data = NULL, geom = "donut",
     show.legend = show.legend,
     inherit.aes = inherit.aes,
     params = list(na.rm = na.rm,
-                  # angle = angle,
                   ...)
   )
 }
