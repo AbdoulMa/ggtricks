@@ -22,6 +22,39 @@
     <loc>https://abdoulma.github.io/ggtricks/index.html</loc>
   </url>
   <url>
+    <loc>https://abdoulma.github.io/ggtricks/reference/GeomDonut.html</loc>
+  </url>
+  <url>
+    <loc>https://abdoulma.github.io/ggtricks/reference/GeomDonutSlice.html</loc>
+  </url>
+  <url>
+    <loc>https://abdoulma.github.io/ggtricks/reference/GeomPie.html</loc>
+  </url>
+  <url>
+    <loc>https://abdoulma.github.io/ggtricks/reference/GeomSeriesCircles.html</loc>
+  </url>
+  <url>
+    <loc>https://abdoulma.github.io/ggtricks/reference/GeomSlice.html</loc>
+  </url>
+  <url>
+    <loc>https://abdoulma.github.io/ggtricks/reference/StatDonut.html</loc>
+  </url>
+  <url>
+    <loc>https://abdoulma.github.io/ggtricks/reference/StatDonutSlice.html</loc>
+  </url>
+  <url>
+    <loc>https://abdoulma.github.io/ggtricks/reference/StatPie.html</loc>
+  </url>
+  <url>
+    <loc>https://abdoulma.github.io/ggtricks/reference/StatSeriesCircles.html</loc>
+  </url>
+  <url>
+    <loc>https://abdoulma.github.io/ggtricks/reference/StatSeriesText.html</loc>
+  </url>
+  <url>
+    <loc>https://abdoulma.github.io/ggtricks/reference/StatSlice.html</loc>
+  </url>
+  <url>
     <loc>https://abdoulma.github.io/ggtricks/reference/geom_donut.html</loc>
   </url>
   <url>
@@ -44,5 +77,23 @@
   </url>
   <url>
     <loc>https://abdoulma.github.io/ggtricks/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://abdoulma.github.io/ggtricks/reference/stat_donut.html</loc>
+  </url>
+  <url>
+    <loc>https://abdoulma.github.io/ggtricks/reference/stat_donut_slice.html</loc>
+  </url>
+  <url>
+    <loc>https://abdoulma.github.io/ggtricks/reference/stat_pie.html</loc>
+  </url>
+  <url>
+    <loc>https://abdoulma.github.io/ggtricks/reference/stat_series_circles.html</loc>
+  </url>
+  <url>
+    <loc>https://abdoulma.github.io/ggtricks/reference/stat_series_text.html</loc>
+  </url>
+  <url>
+    <loc>https://abdoulma.github.io/ggtricks/reference/stat_slice.html</loc>
   </url>
 </urlset>
