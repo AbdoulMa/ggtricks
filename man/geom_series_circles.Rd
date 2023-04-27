@@ -2,7 +2,7 @@
 % Please edit documentation in R/geom-series-circles.R
 \name{geom_series_circles}
 \alias{geom_series_circles}
-\title{Create series of circles plot}
+\title{Create a series of circles plot}
 \usage{
 geom_series_circles(
   mapping = NULL,
@@ -49,20 +49,20 @@ rather than combining with them.}
 }
 \description{
 \code{geom_series_circles()} can be used as an alternative for
-simple or multiple bar charts. It consists in using
+single or multiple bar charts. It consists of using
 whole and fragments of circles to represent numerical values.
-As it draws circle, the geom should use with \code{\link[ggplot2:coord_fixed]{ggplot2::coord_equal()}}
+As it draws circles, the geom should use with \code{\link[ggplot2:coord_fixed]{ggplot2::coord_equal()}}
 to maintain the "aspect ratio".
 
-There are two are arguments absolutely needed in  \code{aes()} mappings:
+There are two are arguments absolutely needed in \code{aes()} mappings:
 \itemize{
-\item \code{x} A vector mapping the abscissa "x" axis. Either a character vector
-when \code{x} is a numerical vector. Either a numerical vector when \code{y} is a character
+\item \code{x} A vector mapping the abscissa  axis \code{x},  i.e. a character vector
+when \code{x} is a numerical vector, or  a numerical vector when \code{y} is a character
 vector.
-\item \code{y} A vector mapping the ordinate "y" axis. Either a numerical vector
-when \code{x} is a character vector. And vice versa.
+\item \code{y} A vector mapping the ordinate axis \code{y}, i.e. a numerical vector
+when \code{x} is a character vector or vice versa.
 There is a default mapping \code{fill} with  value \code{black} to fill  circles/fragments
-of circles with it . It can be used in  \code{aes} mapping or as  a global argument
+of circles with. It can be used in  \code{aes} mapping or as  a global argument
 for all the circles.
 }
 }

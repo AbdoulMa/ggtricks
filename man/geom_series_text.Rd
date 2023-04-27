@@ -4,7 +4,7 @@
 \name{GeomSeriesText}
 \alias{GeomSeriesText}
 \alias{geom_series_text}
-\title{Create serie of circles labels text}
+\title{Create series of circles labels text}
 \format{
 An object of class \code{GeomSeriesText} (inherits from \code{GeomText}, \code{Geom}, \code{ggproto}, \code{gg}) of length 1.
 }
@@ -67,15 +67,16 @@ to the paired geom/stat.}
 }
 \description{
 \code{geom_series_text} is designed to be used in concert with \link{geom_series_circles}.
-It renders the mapping \code{label} at the end position of the serie circles sequence.
+It renders the \code{label} mapping to the final position of the series of circles sequence.
 
-There are two are arguments absolutely needed in  \code{aes()} mappings:
+There are three arguments absolutely needed in \code{aes()} mappings:
 \itemize{
-\item \code{x} A vector mapping the abscissa "x" axis. Either a character vector
-when \code{x} is a numerical vector. Either a numerical vector when \code{y} is a character
+\item \code{x} A vector mapping the abscissa  axis \code{x},  i.e. a character vector
+when \code{x} is a numerical vector, or  a numerical vector when \code{y} is a character
 vector.
-\item \code{y} A vector mapping the ordinate "y" axis. Either a numerical vector
-when \code{x} is a character vector. And vice versa.
+\item \code{y} A vector mapping the ordinate axis \code{y}, i.e. a numerical vector
+when \code{x} is a character vector or vice versa.
+\item \code{label} Labels.
 }
 }
 \keyword{datasets}

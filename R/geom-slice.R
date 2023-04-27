@@ -101,8 +101,8 @@ GeomSlice <- ggplot2::ggproto("GeomSlice", ggplot2::GeomPolygon,
 #' Create pie slice plot using Cartesian coordinates system
 #'
 #' There are two  arguments absolutely needed in  `aes()` mappings:
-#' - `cat` A discrete categories vector
-#' - `val` A numerical values vector
+#' - `cat` A discrete categories vector.
+#' - `val` A numerical values vector.
 #'
 #' @inheritParams geom_pie
 #' @param slice_angle Pie slice angle

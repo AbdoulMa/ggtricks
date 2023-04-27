@@ -119,8 +119,8 @@ GeomDonutSlice <- ggplot2::ggproto("GeomDonutSlice", ggplot2::GeomPolygon,
 #' Create donut slice plot using Cartesian coordinates system
 #'
 #' There are two  arguments absolutely needed in  `aes()` mappings:
-#' - `cat` A discrete categories vector
-#' - `val` A numerical values vector
+#' - `cat` A discrete categories vector.
+#' - `val` A numerical values vector.
 #'
 #' @inheritParams geom_donut
 #' @param slice_angle Pie slice angle

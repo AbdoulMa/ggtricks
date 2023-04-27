@@ -10,8 +10,7 @@ StatSeriesCircles <- ggplot2::ggproto("StatsSeriesCircles", ggplot2::Stat,
                                       # print("Call from setup params")
                                       x_class <- class(data$x)[1]
                                       y_class <- class(data$y)[1]
-                                      # print(x_class)
-                                      # print(y_class)
+
                                       params$x_discrete <- (x_class ==  "mapped_discrete" && y_class == "numeric")
                                       params$y_discrete <- (y_class == "mapped_discrete" && x_class == "numeric")
 

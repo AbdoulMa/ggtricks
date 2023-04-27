@@ -105,7 +105,7 @@ to \code{TRUE}}
 \description{
 There are two arguments absolutely needed in  \code{aes()} mappings:
 \itemize{
-\item \code{cat} A discrete categories vector
-\item \code{val} A numerical values vector
+\item \code{cat} A discrete categories vector.
+\item \code{val} A numerical values vector.
 }
 }

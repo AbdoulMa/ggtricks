@@ -5,8 +5,8 @@ draw_panel_function = function(data, panel_scales, coord,
                                linewidth = .5, labels_col = "black", labels_size = 1, labels_family = "", labels_with_tick = F, tick_lwd = 1, labels_hjust = .5, labels_vjust = .5, labels_fontface = "plain", labels_lineheight = 1.2) {
 
   coords <- coord$transform(data, panel_scales)
-  # Rescale coords to fit
 
+    # Rescale coords to fit
   xrange <- range(c(data$x , data$xstart, data$xend, data$labelx, panel_scales$x.range))
   yrange <- range(c(data$y , data$ystart, data$yend, data$labely,panel_scales$y.range))
   coords$x = rescale(data$x, from = xrange)
@@ -104,8 +104,8 @@ GeomDonut <- ggplot2::ggproto("GeomDonut", ggplot2::GeomPolygon,
 #' Create donut plot using Cartesian coordinates system
 #'
 #' There are two arguments absolutely needed in  `aes()` mappings:
-#' - `cat` A discrete categories vector
-#' - `val` A numerical values vector
+#' - `cat` A discrete categories vector.
+#' - `val` A numerical values vector.
 #'
 #' @inheritParams common_doc
 #' @param r1 Outer circle radius

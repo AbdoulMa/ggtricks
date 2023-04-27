@@ -44,23 +44,23 @@ GeomSeriesCircles <- ggplot2::ggproto("GeomSeriesCircles", ggplot2::GeomPolygon,
                            rename_size = TRUE
 )
 
-#' @title Create series of circles plot
+#' @title Create a series of circles plot
 #'
 #' @description
 #' `geom_series_circles()` can be used as an alternative for
-#' simple or multiple bar charts. It consists in using
+#' single or multiple bar charts. It consists of using
 #' whole and fragments of circles to represent numerical values.
-#' As it draws circle, the geom should use with [ggplot2::coord_equal()]
+#' As it draws circles, the geom should use with [ggplot2::coord_equal()]
 #' to maintain the "aspect ratio".
 #'
-#' There are two are arguments absolutely needed in  `aes()` mappings:
-#' - `x` A vector mapping the abscissa "x" axis. Either a character vector
-#' when `x` is a numerical vector. Either a numerical vector when `y` is a character
+#' There are two are arguments absolutely needed in `aes()` mappings:
+#' - `x` A vector mapping the abscissa  axis `x`,  i.e. a character vector
+#' when `x` is a numerical vector, or  a numerical vector when `y` is a character
 #' vector.
-#' - `y` A vector mapping the ordinate "y" axis. Either a numerical vector
-#' when `x` is a character vector. And vice versa.
+#' - `y` A vector mapping the ordinate axis `y`, i.e. a numerical vector
+#' when `x` is a character vector or vice versa.
 #' There is a default mapping `fill` with  value `black` to fill  circles/fragments
-#' of circles with it . It can be used in  `aes` mapping or as  a global argument
+#' of circles with. It can be used in  `aes` mapping or as  a global argument
 #'  for all the circles.
 #'
 #' @param mapping Set of aesthetic mappings created by `aes()` or
@@ -114,18 +114,19 @@ geom_series_circles <-  function(mapping = NULL, data = NULL,
 #' @export
 GeomSeriesText <- ggplot2::ggproto("GeomSeriesText", ggplot2::GeomText)
 
-#' Create serie of circles labels text
+#' Create series of circles labels text
 #'
 #' @description
 #' `geom_series_text` is designed to be used in concert with [geom_series_circles].
-#' It renders the mapping `label` at the end position of the serie circles sequence.
+#' It renders the `label` mapping to the final position of the series of circles sequence.
 #'
-#' There are two are arguments absolutely needed in  `aes()` mappings:
-#' - `x` A vector mapping the abscissa "x" axis. Either a character vector
-#' when `x` is a numerical vector. Either a numerical vector when `y` is a character
+#' There are three arguments absolutely needed in `aes()` mappings:
+#' - `x` A vector mapping the abscissa  axis `x`,  i.e. a character vector
+#' when `x` is a numerical vector, or  a numerical vector when `y` is a character
 #' vector.
-#' - `y` A vector mapping the ordinate "y" axis. Either a numerical vector
-#' when `x` is a character vector. And vice versa.
+#' - `y` A vector mapping the ordinate axis `y`, i.e. a numerical vector
+#' when `x` is a character vector or vice versa.
+#' - `label` Labels.
 #'
 #' @inheritParams ggplot2::geom_text
 #' @export

@@ -143,8 +143,8 @@ GeomPie <- ggplot2::ggproto("GeomPie", ggplot2::GeomPolygon,
 #' Create pie plot using Cartesian coordinates system
 #'
 #' There are two  arguments absolutely needed in  `aes()` mappings:
-#' - `cat` A discrete categories vector
-#' - `val` A numerical values vector
+#' - `cat` A discrete categories vector.
+#' - `val` A numerical values vector.
 #'
 #' @inheritParams common_doc
 #' @param radius Driving circle radius
