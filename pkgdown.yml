@@ -1,9 +1,8 @@
 pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
-articles:
-  Series-of-circles-Examples: Series-of-circles-Examples.html
-last_built: 2023-04-26T14:33Z
+articles: {}
+last_built: 2023-04-27T19:34Z
 urls:
   reference: https://abdoulma.github.io/ggtricks/reference
   article: https://abdoulma.github.io/ggtricks/articles
