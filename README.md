@@ -9,6 +9,7 @@
 status](https://www.r-pkg.org/badges/version/ggtricks)](https://CRAN.R-project.org/package=ggtricks)
 [![Codecov test
 coverage](https://codecov.io/gh/AbdoulMa/ggtricks/branch/main/graph/badge.svg)](https://app.codecov.io/gh/AbdoulMa/ggtricks?branch=main)
+[![R-CMD-check](https://github.com/AbdoulMa/ggtricks/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AbdoulMa/ggtricks/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 **{ggtricks}** package is a collection of multiple `geom` presenting

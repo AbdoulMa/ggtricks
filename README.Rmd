@@ -24,6 +24,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/ggtricks)](https://CRAN.R-project.org/package=ggtricks)
 [![Codecov test coverage](https://codecov.io/gh/AbdoulMa/ggtricks/branch/main/graph/badge.svg)](https://app.codecov.io/gh/AbdoulMa/ggtricks?branch=main)
+[![R-CMD-check](https://github.com/AbdoulMa/ggtricks/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AbdoulMa/ggtricks/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 **{ggtricks}** package is a collection of multiple `geom` presenting data in the form of  circle (for now, but many more to come and not just circle oriented.) using `grammar of graphics` philosophy and Cartesian coordinates system.
