@@ -52,8 +52,6 @@ StatDonutSlice <- ggplot2::ggproto("DonutSlice", ggplot2::Stat,
                                 if (i == 1) {
                                   df2$connectx <- P1$x[1]
                                   df2$connecty <- P1$y[1]
-                                  print(P1$x[1])
-                                  print(P1$y[1])
                                 }
                                 else if (i == nx) {
                                   df2$connectx <- P1$x[length(P1$x)]

@@ -13,13 +13,13 @@ status](https://www.r-pkg.org/badges/version/ggtricks)](https://CRAN.R-project.o
 coverage](https://codecov.io/gh/AbdoulMa/ggtricks/branch/main/graph/badge.svg)](https://app.codecov.io/gh/AbdoulMa/ggtricks?branch=main)
 <!-- badges: end -->
 
-**{ggtricks}** package is a collection of multiple geom presenting data
-in the form of circle (at the moment, but many more to come and not only
-circle oriented.) using grammar of graphics philosophy and Cartesian
+**{ggtricks}** package is a collection of multiple `geom` presenting
+data in the form of circle (for now, but many more to come and not just
+circle oriented.) using `grammar of graphics` philosophy and Cartesian
 coordinates system.
 
-You have bench of functions to make sector charts where circle is
-divided along it radii, so each section is proportional to value it
+You have a lot of functions to make sector charts where circle is split
+along its radii, therefore each section is proportional to value it
 represents.
 
 - `geom_pie` Pie charts
@@ -29,18 +29,23 @@ represents.
 
 You also have a function, `geom_series_circles()` to draw what I call
 series of circles, which draws for a category as many circles and
-fraction of circles needed to represent the value represented by this
+fraction of circles as needed to represent the value represented by that
 category. A companion function `geom_series_text` is defined to put
-labels at limit of series circles as computing this limits positions can
-be tedious depending on fragments of circles starting angle.
+labels at the boundary of series circles because calculating these
+boundary positions can be tedious depending on the starting angle of the
+fragments of circles.
 
 ## Installation
 
-You can install the development version of ggtricks like so:
+You can install the stable version of ggtricks like so:
 
 ``` r
 install.packages("ggtricks")
-# or 
+```
+
+or the developpement version:
+
+``` r
 devtools::install_github("abdoulma/ggtricks")
 ```
 
@@ -53,51 +58,66 @@ devtools::install_github("abdoulma/ggtricks")
 ``` r
 library(tidyverse)
 library(ggtricks)
+
+my_theme <-  function(...) { 
+   theme_minimal() + 
+    theme(
+      text = element_text(family = "Atkinson Hyperlegible"),
+    axis.text.y =  element_text(color = "black", size = rel(1.5))
+  )
+}
 prod_df <- data.frame(
-  good = c("Chicken", "Eggs", "Meats"), 
-  inflation = c(2.275, 8.5, 3.85)
+  good = c("Potatoes", "Sugar", "Butter", "Coffee", "Rice", "Eggs", "Flour", "Tea", "Milk"), 
+  index = c(606,485, 204, 165, 215, 268, 267, 137, 194)
 )
 
-prod_df <- prod_df |> 
-  mutate(good = fct_reorder(good, inflation))
+prod_df <- prod_df |>
+  mutate(
+    index = index / 100,
+    good = fct_rev(fct_inorder(good))
+    # good = fct_reorder(good, inflation)
+    )
 
 prod_df |>
   ggplot() + 
-  geom_series_circles(aes(inflation, good), color = "white", linewidth = 2.5) + 
+  geom_series_circles(aes(index, good), color = "white", linewidth = 2.5) + 
   coord_equal() + 
-  theme_minimal()
+  my_theme()
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+<img src="man/figures/README-basic-series-example-1.png" width="100%" />
 
-Of course, there are a mapping argument `fill` to drive each category
+Of course, there is a `fill` mapping argument to drive each category
 filling color.
 
 ``` r
 prod_df |>
   ggplot() + 
-  geom_series_circles(aes(inflation, good, fill = good),color = "black", linewidth = 2.5) + 
+  geom_series_circles(aes(index, good, fill = good),color = "black", linewidth = 2.5) + 
   coord_equal() + 
-  theme_minimal()
+  my_theme()
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+<img src="man/figures/README-series-circles-fills-1.png" width="100%" />
 
 Of course, you can choose, to customize the categories labels by setting
-`axis.text` in `theme_*()` function. But the need can come to add labels
-at series of circles ending positions. There comes `geom_series_text()`
-functions.
+`axis.text` in `theme_*()` function. But the need may come to add labels
+at series of circles boundary positions. There comes
+`geom_series_text()` function.
 
 ``` r
 prod_df |>
   ggplot() + 
-  geom_series_circles(aes(inflation, good, fill = good),color = "black", linewdith = 2.5) + 
-  geom_series_text(aes(inflation, good, label = inflation)) + 
-  coord_equal() + 
-  theme_minimal()
+  geom_series_circles(aes(index, good, fill = good),color = "black", linewidth = 2.5) + 
+  geom_series_text(aes(index, good, label = index), size = 6, family = "Atkinson Hyperlegible") + 
+  coord_equal(clip = "off") + 
+  guides(
+    fill = "none",
+  ) + 
+  my_theme()
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+<img src="man/figures/README-series-circles-with-text-1.png" width="100%" />
 
 You can set `init_angle` to define fragment of circle starting angle.
 
@@ -126,17 +146,70 @@ index_df |>
   theme_minimal()
 ```
 
-<!-- TODO Put the facet
-![]() -->
+![Series of circles Init
+angles](man/figures/series_circles_init_angle_montage.png)
 
-- Two series of circles combination
+- Two series of circles combination Let’s illustrate a use of the
+  combination of two series of circles with another example from *Charts
+  And Graphs (An introduction to graphics methods in control and
+  analysis of statistics)* by KARL G. KARSTEN, B.A.
+
+``` r
+usa_trades <- tribble(
+  ~country, ~with_foreign, ~with_us, 
+  "United States", 13359, 13359,
+  "United Kingdom", 15925, 3123,
+  "Canada", 2304, 1256,
+  "France", 7429, 1686,
+  "Italy", 4189, 1516,
+  "Netherlands", 2639, 316,
+  "Japan", 2421, 1420,
+  "Germany", 4966, 577
+)
+
+usa_trades <- usa_trades |> 
+  mutate(
+    country = fct_rev(fct_inorder(country)), 
+     across(.cols = contains("with"), \(x) x / 1e3, .names = "{.col}")
+  ) |> 
+  arrange(country) |> 
+  mutate(
+    row_num = row_number()
+  )
+
+n_rows <- nrow(usa_trades)
+usa_trades |> 
+  ggplot() + 
+  geom_series_circles(aes(with_foreign, country), fill = "white", color = "black", linewidth = 2) + 
+  geom_series_circles(aes(with_us, country)) + 
+  geom_text(aes(y = row_num, label = scales::comma(with_us)), x = -1, family = "Atkinson Hyperlegible", hjust = 1) + 
+  geom_text(aes(y = row_num, label = scales::comma(with_foreign)), x = -2, family = "Atkinson Hyperlegible",hjust = 1) + 
+  geom_text(aes(y = row_num, label = country), x = -3.5, family = "Atkinson Hyperlegible", fontface = "bold", hjust = 1) + 
+  annotate(geom = "text", x = -1, y = n_rows + 1, label = "Trade\n with\n U.S.", family = "Atkinson Hyperlegible", hjust = 1 ) + 
+  annotate(geom = "text", x = -2, y = n_rows + 1, label = "Total\n Foreign\n Trade", family = "Atkinson Hyperlegible", hjust = 1 ) + 
+  annotate(geom = "text", x = 8, y = n_rows + 1, label = "(Millions of Dollars)", family = "Atkinson Hyperlegible") + 
+  
+  scale_x_continuous(
+    limits = c(-5, 14)
+  ) + 
+  
+  coord_equal(clip = "off") +
+  theme_minimal() +
+  theme(
+    axis.text = element_blank(),
+    axis.title = element_blank(), 
+    panel.grid = element_blank()
+  )
+```
+
+![Series of circles
+combination](man/figures/series_cricles_combination.png)
 
 ### `geom_pie`
 
-- `init_angle` As for `geom_series_circles()`, you can set the init
-  angle parameter to define the starting angle of you pie (here the
-  `pie`, but it is also available for `donut`, `slice` and
-  `donut_slice`.)
+- `init_angle` As with `geom_series_circles()`, you can set the init
+  angle parameter to set the starting angle of your pie (here the `pie`,
+  but it is also available for `donut`, `slice` and `donut_slice`.)
 
 ``` r
 my_df <- data.frame(
@@ -171,10 +244,10 @@ my_df |>
 ![](man/figures/pie_facets_angle_montage.png)
 
 - `spotlight_max` & `spotlight_position` If you want the category with
-  the max value to drive the slices positions, you cant set the
+  the max value to determine the slices positions, you can set the
   `spotlight_max` parameter to `true`. Then the category with the max
-  value will be placed at `spotlight_position` (default `top`, others
-  possibles values are: `right`, `bottom` and `left`.)
+  value will be placed at `spotlight_position` (by default `top`, others
+  possible values are: `right`, `bottom` and `left`.)
 
 ``` r
 my_df |>
@@ -195,11 +268,11 @@ my_df |>
 ![Spotlight max
 positions](man/figures/pie_facets_spotlight_max_montage.png)
 
-- `spotlight_cat` Maybe, you want specific category to drive the slices
-  positions rather than the category with the max value ? Then come the
-  `spotlight_cat` parameter to define the driving category. Here too,
-  you can combine the `spotlight_cat` parameter value with
-  `spotlight_position` to specify its position.
+- `spotlight_cat` Maybe, you want a specific category to drive the
+  slices positions rather than the category with the maximum value ?
+  Then come the `spotlight_cat` parameter to define the driving
+  category. Also here you can combine the `spotlight_cat` parameter
+  value with `spotlight_position` to specify its position.
 
 ``` r
 my_df |>  
@@ -216,15 +289,15 @@ my_df |>
   theme_minimal()
 ```
 
-<img src="man/figures/README-unnamed-chunk-9-1.png" width="100%" />
+<img src="man/figures/README-pie-cat-spotlighted-1.png" width="100%" />
 
 - `labels`
 
-As I know that it can be tricky to know the coordinates of the positions
-of the center of categories slices, I define a default mapping `labels`
-that will place the provided labels at that position. When `labels`
-mapping is defined, you can set `labels_with_tick` parameters to `TRUE`
-to add ticks at slices centers positions.
+As I know that it can be difficult to know the coordinates of the center
+positions of the category slices, I define a default `label` mapping
+which will place the provided labels at this position. When `label`
+mapping is defined, you can define `labels_with_tick` parameter to
+`TRUE` to add tick mark at the centers positions of the slices.
 
 ``` r
 my_df |> 
@@ -244,8 +317,8 @@ my_df |>
 
 ### `geom_donut`
 
-Donut is just pie with an hole. There are two parameters `r1` and `r2`
-to set donut thickness.
+Donut is just pie with a hole in it. There are two parameters `r1` and
+`r2` to define thickness of the donut.
 
 ``` r
 my_df |> 
@@ -264,12 +337,12 @@ my_df |>
 
 ![](man/figures/donuts_facets_montage.png)
 
-All the others parameters available for `geom_pie` are here too.
+All others parameters available for `geom_pie` are also here.
 
 ### `geom_slice`
 
-It is a portion of pie, by default an half (180 deg). You can set the
-`slice_angle` portion yo fit your need.
+It is a portion of pie, by default a half (180 deg). You can set the
+`slice_angle` portion as needed.
 
 ``` r
 my_df |> 
@@ -289,10 +362,10 @@ my_df |>
 ![Slices plots with different
 angles](man/figures/slice_facets_angle_montage.png)
 
-Here too, you can set the starting angle position with `init_angle`.
-Note here that there are not `spotlight_max`, `spotlight_cat`
-parameters, as we are not drawing a complete circle (but theoretically
-you can, if you set `slice_angle` to 360, which means a `pie`.)
+Also here, you can set the starting angle position with `init_angle`.
+Note here that there are no `spotlight_max`, `spotlight_cat` parameters,
+since we are not drawing a complete circle (but theoretically you can,
+if you set `slice_angle` to 360, which means a `pie`.)
 
 ``` r
 my_df |> 
@@ -314,12 +387,12 @@ angles](man/figures/slice_facets_init_angle_montage.png)
 
 You can however set the slice position with `slice_position`(possible
 values are: `top`, `right`, `bottom`, and `left`). Soon, I will post
-more detailed examples on the package website :
+more detailed examples on the package website:
 <https://www.abdoulma.github.io/ggtricks>.
 
 ### `geom_donut_slice`
 
-It is a slice of donut plot. As `geom_donut`, it is driven by 2 radii
+It is a slice of donut plot. As a `geom_donut`, it is driven by 2 radii
 and as a slice plot, it has a defined slice angle.
 
 ``` r
@@ -343,8 +416,8 @@ my_df |>
 ![Donut slice plots with different
 angles](man/figures/donut_slice_facets_angle_montage.png)
 
-`geom_slice_donut` has also special parameter `link_with_origin`,if you
-want to connect the donut slice limits with origin.
+`geom_slice_donut` also has special parameter `link_with_origin`,if you
+want to connect the donut slice boundaries with origin.
 
 ``` r
 my_df |> 
@@ -363,16 +436,13 @@ my_df |>
   theme_minimal()
 ```
 
-<img src="man/figures/README-unnamed-chunk-15-1.png" width="100%" />
-
-    #> [1] 0.8660254
-    #> [1] 0.5
+<img src="man/figures/README-slice-donut-example-1.png" width="100%" />
 
 ## Limitations
 
-As you surely noted, to generate circle, I use `coord_equal()`, using
-`coord_cartesian()` will zoom the plot, not generating a appealing
-circle shape even if the underlying drawn plot is a plot. So, we fix,
+As you might have noticed, to generate circle, I use `coord_equal()`,
+using `coord_cartesian()` will zoom the plot, not generating a appealing
+circle shape even if the underlying drawn plot is a circle. So, we fix,
 the `aspect ratio` to force :
 
 > the physical representation of data units on the axes.
@@ -382,27 +452,27 @@ according to the official
 Of course, you shouldn’t edit the default `ratio = 1` that ensures that
 one unit on `x-axis` is the same length as one unit on the `y-axis`.
 
-When using `geom_serie_circle()`, the desire will come one day to
-combine it with `facet_wrap()` or `facet_grid` or whatever faceting
-function, **you should not**, or not in the way you are thinking about.
+When using `geom_series_circles()`, the desire will come one day to
+combine it with `facet_wrap()` or `facet_grid` or any faceting function,
+**you should not**, or not the way you envision.
 
-As we use `coord_equal()`, you won’t be able to set `scales` parameter,
-what I strongly suspect you to try to do. So for the moment, I don’t
-recommend you to do so. Although, I will give some tips to go through
-those restrictions on package website
+Since we are using `coord_equal()`, you won’t be able to set `scales`
+parameter, which I strongly suspect you to try to do. So for the moment,
+I advise you not to do so. However, I will provide some tips to go
+through those restrictions on package website
 <https://www.abdoulma.github.io/ggtricks>
 
 ## Roadmap
 
-In the following weeks, additional features will be added to current
+In the coming weeks, additional features will be added to current
 `geoms`:
 
 - Detach spotlighted category
-- Variate radius for categories representation
+- Variate radii for the representation of categories
 - Label displaying in mapping (choose categories we want to display)
 - Special key draw for pie and slice and another one for `donut` and
   `donut_slice`.
 
-As announced at start, I don’t limit the package to sector charts, so
-additional `geom` styles will be added, and if you have suppositions,
+As announced at start, I am not limiting the package to sector charts,
+so additional `geom` styles will be added, and if you have suppositions,
 fee free to open an issue, I am open to all contributions.

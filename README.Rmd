@@ -107,7 +107,10 @@ prod_df |>
   ggplot() + 
   geom_series_circles(aes(index, good, fill = good),color = "black", linewidth = 2.5) + 
   geom_series_text(aes(index, good, label = index), size = 6, family = "Atkinson Hyperlegible") + 
-  coord_equal() + 
+  coord_equal(clip = "off") + 
+  guides(
+    fill = "none",
+  ) + 
   my_theme()
 ```
 
@@ -143,7 +146,7 @@ index_df |>
 - Two  series of circles combination
 Let's illustrate a use of the combination of two series of circles with another example from *Charts And Graphs (An introduction to graphics methods in control and analysis of statistics)* by KARL G. KARSTEN, B.A.
 
-```{r series-circles-combination}
+```{r series-circles-combination, fig.show='hide'}
 usa_trades <- tribble(
   ~country, ~with_foreign, ~with_us, 
   "United States", 13359, 13359,
@@ -189,9 +192,14 @@ usa_trades |>
     axis.title = element_blank(), 
     panel.grid = element_blank()
   )
-  
 ```
 
+
+```{r series-circles-combination-saving, include=FALSE}
+ggsave("man/figures/series_cricles_combination.png", width = 9.5, height = 6, dpi = 300, device = ragg::agg_png)
+```
+
+![Series of circles combination](man/figures/series_cricles_combination.png)
 
 ###  `geom_pie` 
 - `init_angle`
