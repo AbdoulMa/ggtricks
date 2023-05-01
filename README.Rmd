@@ -189,7 +189,7 @@ usa_trades |>
     axis.text = element_blank(),
     axis.title = element_blank(),
     panel.grid = element_blank(), 
-    plot.background = element_rect(fill = NA, color = NA)
+    plot.background = element_rect(fill = "white", color = NA)
   )
 ```
 
