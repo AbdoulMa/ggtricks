@@ -59,16 +59,16 @@ devtools::install_github("abdoulma/ggtricks")
 library(tidyverse)
 library(ggtricks)
 
-my_theme <-  function(...) { 
-   theme_minimal() + 
+my_theme <- function(...) {
+  theme_minimal() +
     theme(
       text = element_text(family = "Atkinson Hyperlegible"),
-    axis.text.y =  element_text(color = "black", size = rel(1.5))
-  )
+      axis.text.y = element_text(color = "black", size = rel(1.5))
+    )
 }
 prod_df <- data.frame(
-  good = c("Potatoes", "Sugar", "Butter", "Coffee", "Rice", "Eggs", "Flour", "Tea", "Milk"), 
-  index = c(606,485, 204, 165, 215, 268, 267, 137, 194)
+  good = c("Potatoes", "Sugar", "Butter", "Coffee", "Rice", "Eggs", "Flour", "Tea", "Milk"),
+  index = c(606, 485, 204, 165, 215, 268, 267, 137, 194)
 )
 
 prod_df <- prod_df |>
@@ -76,12 +76,12 @@ prod_df <- prod_df |>
     index = index / 100,
     good = fct_rev(fct_inorder(good))
     # good = fct_reorder(good, inflation)
-    )
+  )
 
 prod_df |>
-  ggplot() + 
-  geom_series_circles(aes(index, good), color = "white", linewidth = 2.5) + 
-  coord_equal() + 
+  ggplot() +
+  geom_series_circles(aes(index, good), color = "white", linewidth = 2.5) +
+  coord_equal() +
   my_theme()
 ```
 
@@ -92,9 +92,9 @@ filling color.
 
 ``` r
 prod_df |>
-  ggplot() + 
-  geom_series_circles(aes(index, good, fill = good),color = "black", linewidth = 2.5) + 
-  coord_equal() + 
+  ggplot() +
+  geom_series_circles(aes(index, good, fill = good), color = "black", linewidth = 2.5) +
+  coord_equal() +
   my_theme()
 ```
 
@@ -107,13 +107,13 @@ at series of circles boundary positions. There comes
 
 ``` r
 prod_df |>
-  ggplot() + 
-  geom_series_circles(aes(index, good, fill = good),color = "black", linewidth = 2.5) + 
-  geom_series_text(aes(index, good, label = index), size = 6, family = "Atkinson Hyperlegible") + 
-  coord_equal(clip = "off") + 
+  ggplot() +
+  geom_series_circles(aes(index, good, fill = good), color = "black", linewidth = 2.5) +
+  geom_series_text(aes(index, good, label = index), size = 6, family = "Atkinson Hyperlegible") +
+  coord_equal(clip = "off") +
   guides(
     fill = "none",
-  ) + 
+  ) +
   my_theme()
 ```
 
@@ -122,26 +122,26 @@ prod_df |>
 You can set `init_angle` to define fragment of circle starting angle.
 
 ``` r
-index_df <- tribble( 
-  ~article, ~index, 
-  "Plate beef", 187, 
-  "Bacon", 215, 
+index_df <- tribble(
+  ~article, ~index,
+  "Plate beef", 187,
+  "Bacon", 215,
   "Lard", 266
-  )
+)
 
-index_df <- index_df |> 
+index_df <- index_df |>
   mutate(
-    index =  index / 100
+    index = index / 100
   )
 
-index_df |> 
-  ggplot() + 
+index_df |>
+  ggplot() +
   geom_series_circles(aes(index, article),
-                      init_angle = 45
-                      # init_angle = 90
-                      # init_angle = 145
-                      # init_angle = 180
-                      ) + 
+    init_angle = 45
+    # init_angle = 90
+    # init_angle = 145
+    # init_angle = 180
+  ) +
   coord_equal() +
   theme_minimal()
 ```
@@ -156,7 +156,7 @@ angles](man/figures/series_circles_init_angle_montage.png)
 
 ``` r
 usa_trades <- tribble(
-  ~country, ~with_foreign, ~with_us, 
+  ~country, ~with_foreign, ~with_us,
   "United States", 13359, 13359,
   "United Kingdom", 15925, 3123,
   "Canada", 2304, 1256,
@@ -167,38 +167,37 @@ usa_trades <- tribble(
   "Germany", 4966, 577
 )
 
-usa_trades <- usa_trades |> 
+usa_trades <- usa_trades |>
   mutate(
-    country = fct_rev(fct_inorder(country)), 
-     across(.cols = contains("with"), \(x) x / 1e3, .names = "{.col}")
-  ) |> 
-  arrange(country) |> 
+    country = fct_rev(fct_inorder(country)),
+    across(.cols = contains("with"), \(x) x / 1e3, .names = "{.col}")
+  ) |>
+  arrange(country) |>
   mutate(
     row_num = row_number()
   )
 
 n_rows <- nrow(usa_trades)
-usa_trades |> 
-  ggplot() + 
-  geom_series_circles(aes(with_foreign, country), fill = "white", color = "black", linewidth = 2) + 
-  geom_series_circles(aes(with_us, country)) + 
-  geom_text(aes(y = row_num, label = scales::comma(with_us)), x = -1, family = "Atkinson Hyperlegible", hjust = 1) + 
-  geom_text(aes(y = row_num, label = scales::comma(with_foreign)), x = -2, family = "Atkinson Hyperlegible",hjust = 1) + 
-  geom_text(aes(y = row_num, label = country), x = -3.5, family = "Atkinson Hyperlegible", fontface = "bold", hjust = 1) + 
-  annotate(geom = "text", x = -1, y = n_rows + 1, label = "Trade\n with\n U.S.", family = "Atkinson Hyperlegible", hjust = 1 ) + 
-  annotate(geom = "text", x = -2, y = n_rows + 1, label = "Total\n Foreign\n Trade", family = "Atkinson Hyperlegible", hjust = 1 ) + 
-  annotate(geom = "text", x = 8, y = n_rows + 1, label = "(Millions of Dollars)", family = "Atkinson Hyperlegible") + 
-  
+usa_trades |>
+  ggplot() +
+  geom_series_circles(aes(with_foreign, country), fill = "white", color = "black", linewidth = 2) +
+  geom_series_circles(aes(with_us, country)) +
+  geom_text(aes(y = row_num, label = scales::comma(with_us)), x = -1, family = "Atkinson Hyperlegible", hjust = 1) +
+  geom_text(aes(y = row_num, label = scales::comma(with_foreign)), x = -2, family = "Atkinson Hyperlegible", hjust = 1) +
+  geom_text(aes(y = row_num, label = country), x = -3.5, family = "Atkinson Hyperlegible", fontface = "bold", hjust = 1) +
+  annotate(geom = "text", x = -1, y = n_rows + 1, label = "Trade\n with\n U.S.", family = "Atkinson Hyperlegible", hjust = 1) +
+  annotate(geom = "text", x = -2, y = n_rows + 1, label = "Total\n Foreign\n Trade", family = "Atkinson Hyperlegible", hjust = 1) +
+  annotate(geom = "text", x = 8, y = n_rows + 1, label = "(Millions of Dollars)", family = "Atkinson Hyperlegible") +
   scale_x_continuous(
     limits = c(-5, 14)
-  ) + 
-  
+  ) +
   coord_equal(clip = "off") +
   theme_minimal() +
   theme(
     axis.text = element_blank(),
-    axis.title = element_blank(), 
-    panel.grid = element_blank()
+    axis.title = element_blank(),
+    panel.grid = element_blank(), 
+    plot.background = element_rect(fill = NA, color = NA)
   )
 ```
 
@@ -213,8 +212,8 @@ combination](man/figures/series_cricles_combination.png)
 
 ``` r
 my_df <- data.frame(
-  cat = paste0("Prod ",  1:4), 
-   val = c( 87,34,21,8)
+  cat = paste0("Prod ", 1:4),
+  val = c(87, 34, 21, 8)
 )
 
 categories_fills <- c(
@@ -227,13 +226,13 @@ categories_fills <- c(
 
 ``` r
 my_df |>
-  ggplot() + 
-  geom_pie(aes(cat = cat, val = val, fill = cat), 
-            init_angle = 0
-            # init_angle = 60,
-            # init_angle = 120,
-            # init_angle = 180
-           ) + 
+  ggplot() +
+  geom_pie(aes(cat = cat, val = val, fill = cat),
+    init_angle = 0
+    # init_angle = 60,
+    # init_angle = 120,
+    # init_angle = 180
+  ) +
   coord_equal() +
   scale_fill_manual(
     values = categories_fills
@@ -251,14 +250,15 @@ my_df |>
 
 ``` r
 my_df |>
-  ggplot() + 
-  geom_pie(aes(cat = cat, val = val), spotlight_max = TRUE,
-           spotlight_position = "top",
-           # spotlight_position = "right"
-           # spotlight_position = "bottom"
-           # spotlight_position = "left"
-  ) + 
-  coord_equal() + 
+  ggplot() +
+  geom_pie(aes(cat = cat, val = val),
+    spotlight_max = TRUE,
+    spotlight_position = "top",
+    # spotlight_position = "right"
+    # spotlight_position = "bottom"
+    # spotlight_position = "left"
+  ) +
+  coord_equal() +
   scale_fill_manual(
     values = categories_fills
   ) +
@@ -275,17 +275,17 @@ positions](man/figures/pie_facets_spotlight_max_montage.png)
   value with `spotlight_position` to specify its position.
 
 ``` r
-my_df |>  
-  ggplot() + 
+my_df |>
+  ggplot() +
   geom_pie(aes(cat = cat, val = val, fill = cat),
-           spotlight_cat = "Prod 1",
-           spotlight_position = "top"
-           ) +
-  coord_equal() + 
-   scale_fill_manual(
-      values = categories_fills, 
-      guide = "none"
-    ) +
+    spotlight_cat = "Prod 1",
+    spotlight_position = "top"
+  ) +
+  coord_equal() +
+  scale_fill_manual(
+    values = categories_fills,
+    guide = "none"
+  ) +
   theme_minimal()
 ```
 
@@ -300,16 +300,17 @@ mapping is defined, you can define `labels_with_tick` parameter to
 `TRUE` to add tick mark at the centers positions of the slices.
 
 ``` r
-my_df |> 
-  ggplot() + 
-  geom_pie(aes(cat = cat, val = val, fill = cat, label = cat)
-           # labels_with_ticks = TRUE
-           ) + 
-  coord_equal() + 
-   scale_fill_manual(
-      values = categories_fills, 
-      guide = "none"
-    ) +
+my_df |>
+  ggplot() +
+  geom_pie(
+    aes(cat = cat, val = val, fill = cat, label = cat)
+    # labels_with_ticks = TRUE
+  ) +
+  coord_equal() +
+  scale_fill_manual(
+    values = categories_fills,
+    guide = "none"
+  ) +
   theme_minimal()
 ```
 
@@ -321,17 +322,17 @@ Donut is just pie with a hole in it. There are two parameters `r1` and
 `r2` to define thickness of the donut.
 
 ``` r
-my_df |> 
-  ggplot() + 
-  geom_donut(aes(cat = cat, val = val, fill = cat), 
-           r1 =  1 , r2 = .65      
-           # r1 =  1 , r2 = .35
-           ) + 
-  coord_equal() + 
-   scale_fill_manual(
-      values = categories_fills, 
-      guide = "none"
-    ) +
+my_df |>
+  ggplot() +
+  geom_donut(aes(cat = cat, val = val, fill = cat),
+    r1 = 1, r2 = .65
+    # r1 =  1 , r2 = .35
+  ) +
+  coord_equal() +
+  scale_fill_manual(
+    values = categories_fills,
+    guide = "none"
+  ) +
   theme_minimal()
 ```
 
@@ -345,17 +346,17 @@ It is a portion of pie, by default a half (180 deg). You can set the
 `slice_angle` portion as needed.
 
 ``` r
-my_df |> 
-  ggplot() + 
-  geom_slice(aes(cat = cat, val = val, fill = cat), 
-             slice_angle = 180#,
-             # slice_angle = 120 
-             ) + 
-  coord_equal() + 
-   scale_fill_manual(
-      values = categories_fills, 
-      guide = "none"
-    ) +
+my_df |>
+  ggplot() +
+  geom_slice(aes(cat = cat, val = val, fill = cat),
+    slice_angle = 180 # ,
+    # slice_angle = 120
+  ) +
+  coord_equal() +
+  scale_fill_manual(
+    values = categories_fills,
+    guide = "none"
+  ) +
   theme_minimal()
 ```
 
@@ -368,17 +369,17 @@ since we are not drawing a complete circle (but theoretically you can,
 if you set `slice_angle` to 360, which means a `pie`.)
 
 ``` r
-my_df |> 
-  ggplot() + 
-  geom_slice(aes(cat = cat, val = val, fill = cat), 
-             init_angle = 30#,
-             # init_angle = 90 
-             ) + 
-  coord_equal() + 
-   scale_fill_manual(
-      values = categories_fills, 
-      guide = "none"
-    ) +
+my_df |>
+  ggplot() +
+  geom_slice(aes(cat = cat, val = val, fill = cat),
+    init_angle = 30 # ,
+    # init_angle = 90
+  ) +
+  coord_equal() +
+  scale_fill_manual(
+    values = categories_fills,
+    guide = "none"
+  ) +
   theme_minimal()
 ```
 
@@ -396,20 +397,20 @@ It is a slice of donut plot. As a `geom_donut`, it is driven by 2 radii
 and as a slice plot, it has a defined slice angle.
 
 ``` r
-my_df |> 
-  ggplot() + 
-  geom_donut_slice(aes(cat = cat, val = val, fill = cat), 
-             r1 = 1, r2  = .65
-             # r1 = 1, r2  = .35,
-             # slice_angle = 90 
-             # slice_angle = 120 
-             # slice_angle = 180 
-             ) + 
-  coord_equal() + 
-   scale_fill_manual(
-      values = categories_fills, 
-      guide = "none"
-    ) +
+my_df |>
+  ggplot() +
+  geom_donut_slice(aes(cat = cat, val = val, fill = cat),
+    r1 = 1, r2 = .65
+    # r1 = 1, r2  = .35,
+    # slice_angle = 90
+    # slice_angle = 120
+    # slice_angle = 180
+  ) +
+  coord_equal() +
+  scale_fill_manual(
+    values = categories_fills,
+    guide = "none"
+  ) +
   theme_minimal()
 ```
 
@@ -420,19 +421,19 @@ angles](man/figures/donut_slice_facets_angle_montage.png)
 want to connect the donut slice boundaries with origin.
 
 ``` r
-my_df |> 
-  ggplot() + 
-  geom_donut_slice(aes(cat = cat, val = val, fill = cat), 
-             r1 = 1, r2  = .65,
-             slice_angle = 120,
-             slice_position = "top",
-             link_with_origin = TRUE
-             ) + 
+my_df |>
+  ggplot() +
+  geom_donut_slice(aes(cat = cat, val = val, fill = cat),
+    r1 = 1, r2 = .65,
+    slice_angle = 120,
+    slice_position = "top",
+    link_with_origin = TRUE
+  ) +
   coord_equal(clip = "off") +
-   scale_fill_manual(
-      values = categories_fills, 
-      guide = "none"
-    ) +
+  scale_fill_manual(
+    values = categories_fills,
+    guide = "none"
+  ) +
   theme_minimal()
 ```
 

@@ -188,7 +188,8 @@ usa_trades |>
   theme(
     axis.text = element_blank(),
     axis.title = element_blank(),
-    panel.grid = element_blank()
+    panel.grid = element_blank(), 
+    plot.background = element_rect(fill = NA, color = NA)
   )
 ```
 
