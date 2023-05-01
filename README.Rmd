@@ -195,10 +195,10 @@ usa_trades |>
 
 
 ```{r series-circles-combination-saving, include=FALSE}
-ggsave("man/figures/series_cricles_combination.png", width = 9.5, height = 6, dpi = 300, device = ragg::agg_png)
+ggsave("man/figures/series_circles_combination.png", width = 9.5, height = 5, dpi = 300, device = ragg::agg_png)
 ```
 
-![Series of circles combination](man/figures/series_cricles_combination.png)
+![Series of circles combination](man/figures/series_circles_combination.png)
 
 ###  `geom_pie` 
 - `init_angle`

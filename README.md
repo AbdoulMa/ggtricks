@@ -202,7 +202,7 @@ usa_trades |>
 ```
 
 ![Series of circles
-combination](man/figures/series_cricles_combination.png)
+combination](man/figures/series_circles_combination.png)
 
 ### `geom_pie`
 
