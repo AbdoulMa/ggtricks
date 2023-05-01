@@ -3,8 +3,6 @@
 
 # ggtricks <a href="https://abdoulma.github.io/ggtricks/"><img src="man/figures/logo.png" align="right" height="137" /></a>
 
-# ggtricks
-
 <!-- badges: start -->
 
 [![CRAN

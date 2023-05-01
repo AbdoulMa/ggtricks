@@ -21,8 +21,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-# ggtricks
-
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/ggtricks)](https://CRAN.R-project.org/package=ggtricks)
 [![Codecov test coverage](https://codecov.io/gh/AbdoulMa/ggtricks/branch/main/graph/badge.svg)](https://app.codecov.io/gh/AbdoulMa/ggtricks?branch=main)
