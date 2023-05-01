@@ -94,7 +94,7 @@
 <li>
 <code>geom_donut_slice</code> Part of Donut charts</li>
 </ul>
-<p>You also have a function, <code><a href="reference/geom_series_circles.html">geom_series_circles()</a></code> to draw what I call series of circles, which draws for a category as many circles and fraction of circles as needed to represent the value represented by that category. A companion function <code>geom_series_text</code> is defined to put labels at the boundary of series circles because calculating these boundary positions can be tedious depending on the starting angle of the fragments of circles.</p>
+<p>You also have a function, <code><a href="reference/geom_series_circles.html">geom_series_circles()</a></code> to plot what I call series of circles, which draws for a category as many circles and fraction of circles as needed to represent the value represented by that category. A companion function <code>geom_series_text</code> is defined to put labels at the boundary of series circles because calculating these boundary positions can be tedious depending on the starting angle of the fragments of circles.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -135,12 +135,11 @@
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
 <span>    index <span class="op">=</span> <span class="va">index</span> <span class="op">/</span> <span class="fl">100</span>,</span>
 <span>    good <span class="op">=</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_rev.html" class="external-link">fct_rev</a></span><span class="op">(</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_inorder.html" class="external-link">fct_inorder</a></span><span class="op">(</span><span class="va">good</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="co"># good = fct_reorder(good, inflation)</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
 <span><span class="va">prod_df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="reference/geom_series_circles.html">geom_series_circles</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">index</span>, <span class="va">good</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"white"</span>, linewidth <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/geom_series_circles.html">geom_series_circles</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">index</span>, <span class="va">good</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">my_theme</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-basic-series-example-1.png" width="100%"></p>
@@ -192,8 +191,9 @@
 <img src="reference/figures/series_circles_init_angle_montage.png" alt=""><p class="caption">Series of circles Init angles</p>
 </div>
 <ul>
-<li>Two series of circles combination Let’s illustrate a use of the combination of two series of circles with another example from <em>Charts And Graphs (An introduction to graphics methods in control and analysis of statistics)</em> by KARL G. KARSTEN, B.A.</li>
+<li>Two series of circles combination</li>
 </ul>
+<p>Let’s illustrate a use of the combination of two series of circles with another example from <em>Charts And Graphs (An introduction to graphics methods in control and analysis of statistics)</em> by KARL G. KARSTEN, B.A.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">usa_trades</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span></span>
 <span>  <span class="op">~</span><span class="va">country</span>, <span class="op">~</span><span class="va">with_foreign</span>, <span class="op">~</span><span class="va">with_us</span>,</span>
@@ -248,9 +248,9 @@
 <code>geom_pie</code><a class="anchor" aria-label="anchor" href="#geom_pie"></a>
 </h3>
 <ul>
-<li>
-<code>init_angle</code> As with <code><a href="reference/geom_series_circles.html">geom_series_circles()</a></code>, you can set the init angle parameter to set the starting angle of your pie (here the <code>pie</code>, but it is also available for <code>donut</code>, <code>slice</code> and <code>donut_slice</code>.)</li>
+<li><code>init_angle</code></li>
 </ul>
+<p>As with <code><a href="reference/geom_series_circles.html">geom_series_circles()</a></code>, you can set the init angle parameter to set the starting angle of your pie (here the <code>pie</code>, but it is also available for <code>donut</code>, <code>slice</code> and <code>donut_slice</code>.)</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>  cat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Prod "</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span>,</span>
@@ -280,8 +280,10 @@
 <p><img src="reference/figures/pie_facets_angle_montage.png"></p>
 <ul>
 <li>
-<code>spotlight_max</code> &amp; <code>spotlight_position</code> If you want the category with the max value to determine the slices positions, you can set the <code>spotlight_max</code> parameter to <code>true</code>. Then the category with the max value will be placed at <code>spotlight_position</code> (by default <code>top</code>, others possible values are: <code>right</code>, <code>bottom</code> and <code>left</code>.)</li>
+<code>spotlight_max</code> &amp; <code>spotlight_position</code>
+</li>
 </ul>
+<p>If you want the category with the max value to determine the slices positions, you can set the <code>spotlight_max</code> parameter to <code>true</code>. Then the category with the max value will be placed at <code>spotlight_position</code> (by default <code>top</code>, others possible values are: <code>right</code>, <code>bottom</code> and <code>left</code>.)</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -301,9 +303,9 @@
 <img src="reference/figures/pie_facets_spotlight_max_montage.png" alt=""><p class="caption">Spotlight max positions</p>
 </div>
 <ul>
-<li>
-<code>spotlight_cat</code> Maybe, you want a specific category to drive the slices positions rather than the category with the maximum value ? Then come the <code>spotlight_cat</code> parameter to define the driving category. Also here you can combine the <code>spotlight_cat</code> parameter value with <code>spotlight_position</code> to specify its position.</li>
+<li><code>spotlight_cat</code></li>
 </ul>
+<p>Maybe, you want a specific category to drive the slices positions rather than the category with the maximum value ? Then come the <code>spotlight_cat</code> parameter to define the driving category. Also here you can combine the <code>spotlight_cat</code> parameter value with <code>spotlight_position</code> to specify its position.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
