@@ -422,7 +422,7 @@ my_df |>
 ![Donut slice plots with different
 angles](man/figures/donut_slice_facets_angle_montage.png)
 
-`geom_slice_donut` also has special parameter `link_with_origin`,if you
+`geom_slice_donut` also has special parameter `link_with_origin`, if you
 want to connect the donut slice boundaries with origin.
 
 ``` r
