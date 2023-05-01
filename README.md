@@ -27,7 +27,7 @@ represents.
 - `geom_slice` Part of Pie charts
 - `geom_donut_slice` Part of Donut charts
 
-You also have a function, `geom_series_circles()` to draw what I call
+You also have a function, `geom_series_circles()` to plot what I call
 series of circles, which draws for a category as many circles and
 fraction of circles as needed to represent the value represented by that
 category. A companion function `geom_series_text` is defined to put
@@ -75,12 +75,11 @@ prod_df <- prod_df |>
   mutate(
     index = index / 100,
     good = fct_rev(fct_inorder(good))
-    # good = fct_reorder(good, inflation)
   )
 
 prod_df |>
   ggplot() +
-  geom_series_circles(aes(index, good), color = "white", linewidth = 2.5) +
+  geom_series_circles(aes(index, good), color = "white") +
   coord_equal() +
   my_theme()
 ```
@@ -149,10 +148,11 @@ index_df |>
 ![Series of circles Init
 angles](man/figures/series_circles_init_angle_montage.png)
 
-- Two series of circles combination Let’s illustrate a use of the
-  combination of two series of circles with another example from *Charts
-  And Graphs (An introduction to graphics methods in control and
-  analysis of statistics)* by KARL G. KARSTEN, B.A.
+- Two series of circles combination
+
+Let’s illustrate a use of the combination of two series of circles with
+another example from *Charts And Graphs (An introduction to graphics
+methods in control and analysis of statistics)* by KARL G. KARSTEN, B.A.
 
 ``` r
 usa_trades <- tribble(
@@ -206,9 +206,11 @@ combination](man/figures/series_circles_combination.png)
 
 ### `geom_pie`
 
-- `init_angle` As with `geom_series_circles()`, you can set the init
-  angle parameter to set the starting angle of your pie (here the `pie`,
-  but it is also available for `donut`, `slice` and `donut_slice`.)
+- `init_angle`
+
+As with `geom_series_circles()`, you can set the init angle parameter to
+set the starting angle of your pie (here the `pie`, but it is also
+available for `donut`, `slice` and `donut_slice`.)
 
 ``` r
 my_df <- data.frame(
@@ -242,11 +244,13 @@ my_df |>
 
 ![](man/figures/pie_facets_angle_montage.png)
 
-- `spotlight_max` & `spotlight_position` If you want the category with
-  the max value to determine the slices positions, you can set the
-  `spotlight_max` parameter to `true`. Then the category with the max
-  value will be placed at `spotlight_position` (by default `top`, others
-  possible values are: `right`, `bottom` and `left`.)
+- `spotlight_max` & `spotlight_position`
+
+If you want the category with the max value to determine the slices
+positions, you can set the `spotlight_max` parameter to `true`. Then the
+category with the max value will be placed at `spotlight_position` (by
+default `top`, others possible values are: `right`, `bottom` and
+`left`.)
 
 ``` r
 my_df |>
@@ -268,11 +272,13 @@ my_df |>
 ![Spotlight max
 positions](man/figures/pie_facets_spotlight_max_montage.png)
 
-- `spotlight_cat` Maybe, you want a specific category to drive the
-  slices positions rather than the category with the maximum value ?
-  Then come the `spotlight_cat` parameter to define the driving
-  category. Also here you can combine the `spotlight_cat` parameter
-  value with `spotlight_position` to specify its position.
+- `spotlight_cat`
+
+Maybe, you want a specific category to drive the slices positions rather
+than the category with the maximum value ? Then come the `spotlight_cat`
+parameter to define the driving category. Also here you can combine the
+`spotlight_cat` parameter value with `spotlight_position` to specify its
+position.
 
 ``` r
 my_df |>
