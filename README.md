@@ -17,8 +17,8 @@ circle oriented.) using `grammar of graphics` philosophy and Cartesian
 coordinates system.
 
 You have a lot of functions to make sector charts where circle is split
-along its radii, therefore each section is proportional to value it
-represents.
+along its circumference, therefore each section is proportional to value
+it represents.
 
 - `geom_pie` Pie charts
 - `geom_donut` Donut charts (Pie chart with a hole)

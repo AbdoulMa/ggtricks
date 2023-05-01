@@ -28,7 +28,7 @@ knitr::opts_chunk$set(
 
 **{ggtricks}** package is a collection of multiple `geom` presenting data in the form of  circle (for now, but many more to come and not just circle oriented.) using `grammar of graphics` philosophy and Cartesian coordinates system.
 
-You have a lot of functions to make sector charts where circle is split along its radii,
+You have a lot of functions to make sector charts where circle is split along its circumference,
 therefore each section is proportional to value it represents.
 
 * `geom_pie` Pie charts 
