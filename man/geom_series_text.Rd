@@ -79,4 +79,13 @@ when \code{x} is a character vector or vice versa.
 \item \code{label} Labels.
 }
 }
+\examples{
+my_df <- data.frame(cat = c("Apple", "Banana", "Pineapple"), val = c(2.65, 4.5, 6.25))
+my_df |>
+  ggplot2::ggplot() +
+  geom_series_circles(ggplot2::aes(cat, val)) +
+  geom_series_text(ggplot2::aes(cat, val, label = cat)) +
+  ggplot2::coord_equal()
+
+}
 \keyword{datasets}

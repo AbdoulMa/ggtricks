@@ -1,19 +1,19 @@
 
-draw_panel_function = function(data, panel_scales, coord, r = .5) {
+draw_panel_function <- function(data, panel_scales, coord, r = .5) {
   max <- max(data$group, data$id)
-  data$circle_id = generate_id(data$group, data$id, max)
+  data$circle_id <- generate_id(data$group, data$id, max)
   coords <- coord$transform(data, panel_scales)
 
   first_row <- coords[1, ]
   # Polygons of first 10 groups are
   # drawn first
   first_plotted <- (coords$group < 10) # & (coords$id <= 10)
-  fills_1 <- coords[first_plotted,] # filter(group < 10)
+  fills_1 <- coords[first_plotted, ] # filter(group < 10)
   fills_1 <- fills_1[order(fills_1$group, fills_1$id), ] # arrange(id, group)
   fills_1 <- unique(fills_1[c("id", "group", "fill")]) # distinct(id, group, fill )
   fills_1 <- fills_1$fill
 
-  fills_2 <- coords[!first_plotted,]
+  fills_2 <- coords[!first_plotted, ]
   fills_2 <- fills_2[order(fills_2$group, fills_2$id), ]
   fills_2 <- unique(fills_2[c("id", "group", "fill")])
   fills_2 <- fills_2$fill
@@ -37,11 +37,13 @@ draw_panel_function = function(data, panel_scales, coord, r = .5) {
 #' @usage NULL
 #' @export
 GeomSeriesCircles <- ggplot2::ggproto("GeomSeriesCircles", ggplot2::GeomPolygon,
-                           draw_panel = draw_panel_function,
-                           required_aes = c("x","y"),
-                           default_aes = ggplot2::aes(colour = NA, fill = "black", linewidth = 0.5,
-                                             alpha = NA, subgroup = NULL),
-                           rename_size = TRUE
+  draw_panel = draw_panel_function,
+  required_aes = c("x", "y"),
+  default_aes = ggplot2::aes(
+    colour = NA, fill = "black", linewidth = 0.5,
+    alpha = NA, subgroup = NULL
+  ),
+  rename_size = TRUE
 )
 
 #' @title Create a series of circles plot
@@ -85,24 +87,24 @@ GeomSeriesCircles <- ggplot2::ggproto("GeomSeriesCircles", ggplot2::GeomPolygon,
 #' @param ... other arguments passed on to `layer()`.
 #'
 #' @examples
-#' my_df <- data.frame(cat= c("Apple", "Banana", "Pineapple"), val = c(2.65, 4.5, 6.25))
-#'my_df |>
-#'  ggplot2::ggplot() +
-#'  geom_series_circles(ggplot2::aes(cat, val)) +
-#'  ggplot2::coord_equal()
+#' my_df <- data.frame(cat = c("Apple", "Banana", "Pineapple"), val = c(2.65, 4.5, 6.25))
+#' my_df |>
+#'   ggplot2::ggplot() +
+#'   geom_series_circles(ggplot2::aes(cat, val)) +
+#'   ggplot2::coord_equal()
 #'
 #' @export
-geom_series_circles <-  function(mapping = NULL, data = NULL,
-                               show.legend = NA,
-                               na.rm = FALSE, inherit.aes = TRUE,
-                               init_angle = 0, r = .5, color = NA, linewidth = 0.5, ...) {
+geom_series_circles <- function(mapping = NULL, data = NULL,
+                                show.legend = NA,
+                                na.rm = FALSE, inherit.aes = TRUE,
+                                init_angle = 0, r = .5, color = NA, linewidth = 0.5, ...) {
   ggplot2::layer(
     data = data,
     mapping = mapping,
     stat = StatSeriesCircles,
     geom = GeomSeriesCircles,
     position = "identity",
-    show.legend =  show.legend,
+    show.legend = show.legend,
     inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, init_angle = init_angle, r = r, color = color, linewidth = linewidth, ...)
   )
@@ -129,8 +131,17 @@ GeomSeriesText <- ggplot2::ggproto("GeomSeriesText", ggplot2::GeomText)
 #' - `label` Labels.
 #'
 #' @inheritParams ggplot2::geom_text
+#'
+#' @examples
+#' my_df <- data.frame(cat = c("Apple", "Banana", "Pineapple"), val = c(2.65, 4.5, 6.25))
+#' my_df |>
+#'   ggplot2::ggplot() +
+#'   geom_series_circles(ggplot2::aes(cat, val)) +
+#'   geom_series_text(ggplot2::aes(cat, val, label = cat)) +
+#'   ggplot2::coord_equal()
+#'
 #' @export
-geom_series_text <-  function(mapping = NULL, data = NULL,
+geom_series_text <- function(mapping = NULL, data = NULL,
                              position = "identity", show.legend = NA,
                              na.rm = FALSE, inherit.aes = TRUE,
                              ...) {
@@ -140,10 +151,8 @@ geom_series_text <-  function(mapping = NULL, data = NULL,
     stat = StatSeriesText,
     geom = GeomSeriesText,
     position = position,
-    show.legend =  show.legend,
+    show.legend = show.legend,
     inherit.aes = inherit.aes,
     params = list(na.rm = na.rm, ...)
   )
 }
-
-

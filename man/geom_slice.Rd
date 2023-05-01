@@ -96,3 +96,11 @@ There are two  arguments absolutely needed in  \code{aes()} mappings:
 \item \code{val} A numerical values vector.
 }
 }
+\examples{
+my_df <- data.frame(cat = c("Apple", "Banana", "Pineapple"), val = c(2.65, 4.5, 6.25))
+my_df |>
+  ggplot2::ggplot() +
+  geom_pie(ggplot2::aes(cat = cat, val = val)) +
+  ggplot2::coord_equal()
+
+}

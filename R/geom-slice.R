@@ -1,30 +1,29 @@
 
-draw_panel_function = function(data, panel_scales, coord,
-                               # params to use in draw function
-                               # values are changed when changed in geom
-                               x0 = 0, y0 = 0,
-                               colour = "black", alpha = 1,
-                               linewidth = .5, labels_col = "black", labels_size = 1, labels_family = "", labels_with_tick = F, tick_lwd = 1, labels_hjust = .5, labels_vjust = .5, labels_fontface = "plain", labels_lineheight = 1.2) {
-
+draw_panel_function <- function(data, panel_scales, coord,
+                                # params to use in draw function
+                                # values are changed when changed in geom
+                                x0 = 0, y0 = 0,
+                                colour = "black", alpha = 1,
+                                linewidth = .5, labels_col = "black", labels_size = 1, labels_family = "", labels_with_tick = F, tick_lwd = 1, labels_hjust = .5, labels_vjust = .5, labels_fontface = "plain", labels_lineheight = 1.2) {
   coords <- coord$transform(data, panel_scales)
   # Rescale x & y  to fit
-  xrange <- range(c(data$x , data$xstart, data$xend, data$labelx, panel_scales$x.range))
-  yrange <- range(c(data$y , data$ystart, data$yend, data$labely,panel_scales$y.range))
-  coords$x = rescale(data$x, from = xrange)
-  coords$y = rescale(data$y, from = yrange)
+  xrange <- range(c(data$x, data$xstart, data$xend, data$labelx, panel_scales$x.range))
+  yrange <- range(c(data$y, data$ystart, data$yend, data$labely, panel_scales$y.range))
+  coords$x <- rescale(data$x, from = xrange)
+  coords$y <- rescale(data$y, from = yrange)
   if (!is.null(coords$label)) {
     just_df <- data.frame(
       hjust = ifelse(data$labelx < x0, 1 - labels_hjust, labels_hjust),
       vjust = ifelse(data$labely < y0, 1 - labels_vjust, labels_vjust),
       labelx = data$labelx
     )
-    coords$labelx = rescale(data$labelx, from = xrange )
-    coords$labely = rescale(data$labely, from = yrange )
+    coords$labelx <- rescale(data$labelx, from = xrange)
+    coords$labely <- rescale(data$labely, from = yrange)
     if (labels_with_tick) {
-      coords$xstart = rescale(data$xstart, from = xrange)
-      coords$xend = rescale(data$xend, from = xrange )
-      coords$ystart = rescale(data$ystart, from = yrange)
-      coords$yend = rescale(data$yend, from = yrange)
+      coords$xstart <- rescale(data$xstart, from = xrange)
+      coords$xend <- rescale(data$xend, from = xrange)
+      coords$ystart <- rescale(data$ystart, from = yrange)
+      coords$yend <- rescale(data$yend, from = yrange)
     }
   }
   cols <- intersect(colnames(coords), c("xstart", "ystart", "xend", "yend", "labelx", "labely", "label"))
@@ -50,8 +49,7 @@ draw_panel_function = function(data, panel_scales, coord,
 
   grid::grobTree(
     pie_grob,
-    if(!is.null(df_label$label) && labels_with_tick) {
-
+    if (!is.null(df_label$label) && labels_with_tick) {
       grid::segmentsGrob(
         x0 = df_label$xstart,
         y0 = df_label$ystart,
@@ -64,7 +62,7 @@ draw_panel_function = function(data, panel_scales, coord,
         )
       )
     },
-    if(!is.null(df_label$label)) {
+    if (!is.null(df_label$label)) {
       just_df <- unique(just_df)
       df <- data.frame(
         x = df_label$labelx,
@@ -87,15 +85,17 @@ draw_panel_function = function(data, panel_scales, coord,
 #' @format NULL
 #' @export
 GeomSlice <- ggplot2::ggproto("GeomSlice", ggplot2::GeomPolygon,
-                     setup_data = function(data, params) {
-                       data
-                     },
-                     draw_panel = draw_panel_function,
-                     required_aes = c("cat","x", "y"),
-                     default_aes = ggplot2::aes(colour = NA, fill = "#026841", linewidth = 0.5,
-                                       alpha = NA),
-                     optional_aes = c("label"),
-                     rename_size = TRUE
+  setup_data = function(data, params) {
+    data
+  },
+  draw_panel = draw_panel_function,
+  required_aes = c("cat", "x", "y"),
+  default_aes = ggplot2::aes(
+    colour = NA, fill = "#026841", linewidth = 0.5,
+    alpha = NA
+  ),
+  optional_aes = c("label"),
+  rename_size = TRUE
 )
 
 #' Create pie slice plot using Cartesian coordinates system
@@ -107,25 +107,33 @@ GeomSlice <- ggplot2::ggproto("GeomSlice", ggplot2::GeomPolygon,
 #' @inheritParams geom_pie
 #' @param slice_angle Pie slice angle
 #' @param slice_position Pie slice position
+#'
+#' @examples
+#' my_df <- data.frame(cat = c("Apple", "Banana", "Pineapple"), val = c(2.65, 4.5, 6.25))
+#' my_df |>
+#'   ggplot2::ggplot() +
+#'   geom_pie(ggplot2::aes(cat = cat, val = val)) +
+#'   ggplot2::coord_equal()
+#'
 #' @export
 geom_slice <- function(mapping = NULL, data = NULL,
                        show.legend = NA,
                        na.rm = FALSE, inherit.aes = TRUE,
                        # For parameters
-                       slice_angle = 180, init_angle = 0, x0 = 0, y0 = 0, radius = 1, color = "black", alpha = 1, linewidth = .5, slice_position =  NA, labels_with_tick = F,
+                       slice_angle = 180, init_angle = 0, x0 = 0, y0 = 0, radius = 1, color = "black", alpha = 1, linewidth = .5, slice_position = NA, labels_with_tick = F,
                        labels_family = "",
                        labels_size = 5,
                        labels_col = "black",
-                       labels_hjust = .5, labels_vjust = .5, labels_fontface = "plain", labels_lineheight = 1.2, tick_lwd = 1,  ...) {
+                       labels_hjust = .5, labels_vjust = .5, labels_fontface = "plain", labels_lineheight = 1.2, tick_lwd = 1, ...) {
   ggplot2::layer(
     data = data,
     mapping = mapping,
     stat = StatSlice,
     geom = GeomSlice,
     position = "identity",
-    show.legend =  show.legend,
+    show.legend = show.legend,
     inherit.aes = inherit.aes,
-    check.param =  FALSE,
+    check.param = FALSE,
     params = list(
       na.rm = na.rm,
       slice_angle = slice_angle,
@@ -145,7 +153,7 @@ geom_slice <- function(mapping = NULL, data = NULL,
       labels_hjust = labels_hjust,
       labels_vjust = labels_vjust,
       labels_lineheight = labels_lineheight,
-      tick_lwd =tick_lwd,
+      tick_lwd = tick_lwd,
       ...
     )
   )

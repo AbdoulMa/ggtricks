@@ -67,10 +67,10 @@ for all the circles.
 }
 }
 \examples{
-my_df <- data.frame(cat= c("Apple", "Banana", "Pineapple"), val = c(2.65, 4.5, 6.25))
+my_df <- data.frame(cat = c("Apple", "Banana", "Pineapple"), val = c(2.65, 4.5, 6.25))
 my_df |>
- ggplot2::ggplot() +
- geom_series_circles(ggplot2::aes(cat, val)) +
- ggplot2::coord_equal()
+  ggplot2::ggplot() +
+  geom_series_circles(ggplot2::aes(cat, val)) +
+  ggplot2::coord_equal()
 
 }
