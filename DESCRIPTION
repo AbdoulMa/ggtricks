@@ -17,8 +17,7 @@ Imports:
 Suggests: 
     covr,
     rmarkdown,
-    testthat (>= 3.0.0),
-    vdiffr
+    testthat (>= 3.0.0)
 Config/Needs/website: tidyverse
 Config/testthat/edition: 3
 Encoding: UTF-8

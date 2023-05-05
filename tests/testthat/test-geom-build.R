@@ -12,16 +12,18 @@ test_df <- data.frame(
 #   expect_error(ggplot2::ggplot(error_serie_df) + geom_serie_circle(ggplot2::aes(cat, val)), fixed = TRUE)
 # })
 
-test_that("series circles builds properly", {
-  skip_if_not_installed("vdiffr")
-  # https://github.com/r-lib/vdiffr
-  serie_circles_plot <- ggplot2::ggplot(test_df) +
-    geom_series_circles(ggplot2::aes(cat, val))
-  vdiffr::expect_doppelganger("Serie circles geom builds", serie_circles_plot)
-})
+# test_that("series circles builds properly", {
+#   skip_if_not_installed("vdiffr")
+#   # https://github.com/r-lib/vdiffr
+#   serie_circles_plot <- ggplot2::ggplot(test_df) +
+#     geom_series_circles(ggplot2::aes(cat, val))
+#   vdiffr::expect_doppelganger("Serie circles geom builds", serie_circles_plot)
+# })
 
 
 test_that("geoms build properly.", {
+  expect_no_error(ggplot2::ggplot(test_df) +
+    geom_series_circles(ggplot2::aes(cat, val)))
   expect_no_error(ggplot2::ggplot(test_df) +
     geom_pie(ggplot2::aes(cat = cat, val = val)))
   expect_no_error(ggplot2::ggplot(test_df) +

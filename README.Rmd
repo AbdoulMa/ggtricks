@@ -413,7 +413,6 @@ my_df |>
   theme_minimal()
 ```
 
-
 ## Limitations
 
 As you might have noticed, to generate circle, I use `coord_equal()`, using `coord_cartesian()` will  zoom the plot, not generating a appealing circle shape even if the underlying drawn plot is a circle. So, we fix, the `aspect ratio` to force :
