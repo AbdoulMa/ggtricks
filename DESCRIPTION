@@ -6,7 +6,7 @@ Authors@R:
 Description: A collection of several geom to create graphics, using
     "ggplot2" and the Cartesian coordinate system. You use the familiar
     mapping 'Grammar of Graphics' without the need to do another
-    transformation into polar cordinates.
+    transformation into polar coordinates.
 License: MIT + file LICENSE
 URL: https://github.com/AbdoulMa/ggtricks,
     https://abdoulma.github.io/ggtricks/

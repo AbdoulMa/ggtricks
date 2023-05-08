@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-A collection of several geom to create graphics, using "ggplot2" and the Cartesian coordinate system. You use the familiar mapping 'Grammar of Graphics' without the need to do another transformation into polar cordinates.
+A collection of several geom to create graphics, using "ggplot2" and the Cartesian coordinate system. You use the familiar mapping 'Grammar of Graphics' without the need to do another transformation into polar coordinates.
 }
 \seealso{
 Useful links:

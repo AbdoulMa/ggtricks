@@ -394,7 +394,7 @@ angles](man/figures/slice_facets_init_angle_montage.png)
 You can however set the slice position with `slice_position`(possible
 values are: `top`, `right`, `bottom`, and `left`). Soon, I will post
 more detailed examples on the package website:
-<https://www.abdoulma.github.io/ggtricks>.
+<https://abdoulma.github.io/ggtricks>.
 
 ### `geom_donut_slice`
 
@@ -466,7 +466,7 @@ Since we are using `coord_equal()`, you won’t be able to set `scales`
 parameter, which I strongly suspect you to try to do. So for the moment,
 I advise you not to do so. However, I will provide some tips to go
 through those restrictions on package website
-<https://www.abdoulma.github.io/ggtricks>
+<https://abdoulma.github.io/ggtricks>
 
 ## Roadmap
 
