@@ -41,7 +41,7 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 \code{geom_} prefix (e.g. \code{"point"} rather than \code{"geom_point"})}
 
 \item{position}{Position adjustment, either as a string, or the result of
-a call to a position adjustment function. Cannot be jointy specified with
+a call to a position adjustment function. Cannot be jointly specified with
 \code{nudge_x} or \code{nudge_y}.}
 
 \item{show.legend}{logical. Should this layer be included in the legends?

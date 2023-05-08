@@ -30,7 +30,7 @@ StatPie <- ggplot2::ggproto("StatPie", ggplot2::Stat,
       P <- t2xy(seq.int(x[i], x[i + 1], length.out = n), cat, init, x, x0 = x0, y0 = y0, radius = radius, init.angle = init_angle, spotlight_max = sm, spotlight_cat = sc, spotlight_position = mp, cat_is_present = cat_is_present, cat_index = cat_index)
 
 
-      df2 <- data.frame(cat = cat[i], x = c(P$x, x0), y = c(P$y, y0)) # TODO
+      df2 <- data.frame(cat = cat[i], x = c(P$x, x0), y = c(P$y, y0))
 
       if (!is.null(data$fill)) df2$fill <- data$fill[i]
       # Compute ticks coords when necessary

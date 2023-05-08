@@ -25,7 +25,7 @@ StatDonutSlice <- ggplot2::ggproto("DonutSlice", ggplot2::Stat,
       n <- max(2, floor(edges * dx[i]))
       P1 <- t2xy_slice(seq.int(x[i], x[i + 1], length.out = n), radius = r1, slice_angle = slice_angle, x0 = x0, y0 = y0, init_angle = init_angle, slice_position = slice_position)
       P2 <- t2xy_slice(seq.int(x[i], x[i + 1], length.out = n), radius = r2, slice_angle = slice_angle, x0 = x0, y0 = y0, init_angle = init_angle, slice_position = slice_position)
-      df2 <- data.frame(cat = cat[i], x = c(P1$x, rev(P2$x)), y = c(P1$y, rev(P2$y))) # TODO
+      df2 <- data.frame(cat = cat[i], x = c(P1$x, rev(P2$x)), y = c(P1$y, rev(P2$y)))
 
       if (!is.null(data$fill)) df2$fill <- data$fill[i]
       # Compute ticks coords when necessary
