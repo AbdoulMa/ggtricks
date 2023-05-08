@@ -10,7 +10,7 @@ StatDonutSlice <- ggplot2::ggproto("DonutSlice", ggplot2::Stat,
     categorize(data)
   },
   compute_panel = function(data, scales, x0 = 0, y0 = 0, r1 = 1, r2 = .65, slice_angle = 180, color = "black", init_angle = 0,
-                           link_with_origin = F,
+                           link_with_origin = FALSE,
                            slice_position = "top", labels_with_tick = F) {
     edges <- 100
     data <- data[data$val > 0, ]
@@ -72,6 +72,7 @@ StatDonutSlice <- ggplot2::ggproto("DonutSlice", ggplot2::Stat,
 #' See  [ggplot2::stat_identity]
 #' @inheritParams geom_donut_slice
 #' @inheritParams ggplot2::stat_identity
+#' @returns A ggplot2 layer.
 #' @export
 stat_donut_slice <- function(mapping = NULL, data = NULL, geom = "donut_slice",
                              position = "identity", show.legend = NA, na.rm = FALSE,

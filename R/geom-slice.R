@@ -4,7 +4,7 @@ draw_panel_function <- function(data, panel_scales, coord,
                                 # values are changed when changed in geom
                                 x0 = 0, y0 = 0,
                                 colour = "black", alpha = 1,
-                                linewidth = .5, labels_col = "black", labels_size = 1, labels_family = "", labels_with_tick = F, tick_lwd = 1, labels_hjust = .5, labels_vjust = .5, labels_fontface = "plain", labels_lineheight = 1.2) {
+                                linewidth = .5, labels_col = "black", labels_size = 1, labels_family = "", labels_with_tick = FALSE, tick_lwd = 1, labels_hjust = .5, labels_vjust = .5, labels_fontface = "plain", labels_lineheight = 1.2) {
   coords <- coord$transform(data, panel_scales)
   # Rescale x & y  to fit
   xrange <- range(c(data$x, data$xstart, data$xend, data$labelx, panel_scales$x.range))
@@ -115,12 +115,13 @@ GeomSlice <- ggplot2::ggproto("GeomSlice", ggplot2::GeomPolygon,
 #'   geom_pie(ggplot2::aes(cat = cat, val = val)) +
 #'   ggplot2::coord_equal()
 #'
+#' @returns A ggplot2 layer.
 #' @export
 geom_slice <- function(mapping = NULL, data = NULL,
                        show.legend = NA,
                        na.rm = FALSE, inherit.aes = TRUE,
                        # For parameters
-                       slice_angle = 180, init_angle = 0, x0 = 0, y0 = 0, radius = 1, color = "black", alpha = 1, linewidth = .5, slice_position = NA, labels_with_tick = F,
+                       slice_angle = 180, init_angle = 0, x0 = 0, y0 = 0, radius = 1, color = "black", alpha = 1, linewidth = .5, slice_position = NA, labels_with_tick = FALSE,
                        labels_family = "",
                        labels_size = 5,
                        labels_col = "black",

@@ -2,6 +2,7 @@
 #' See [ggplot2::Geom]
 #' @format NULL
 #' @usage NULL
+#' @RE
 #' @export
 StatPie <- ggplot2::ggproto("StatPie", ggplot2::Stat,
   setup_params = function(data, params) {
@@ -11,7 +12,7 @@ StatPie <- ggplot2::ggproto("StatPie", ggplot2::Stat,
     categorize(data)
   },
   compute_panel = function(data, scales, x0 = 0, y0 = 0, radius = 1, init_angle = 0,
-                           spotlight_cat = NA, spotlight_max = FALSE, spotlight_position = NULL, labels_with_tick = F, cat_is_present = F, cat_index = NA) {
+                           spotlight_cat = NA, spotlight_max = FALSE, spotlight_position = NULL, labels_with_tick = FALSE, cat_is_present = FALSE, cat_index = NA) {
     edges <- 100
     data <- data[data$val > 0, ]
     cat <- data$cat
@@ -60,6 +61,7 @@ StatPie <- ggplot2::ggproto("StatPie", ggplot2::Stat,
 #' See [ggplot2::stat_identity]
 #' @inheritParams geom_pie
 #' @inheritParams ggplot2::stat_identity
+#' @returns A ggplot2 layer.
 #' @export
 stat_pie <- function(mapping = NULL, data = NULL, geom = "pie",
                      position = "identity", show.legend = NA, na.rm = FALSE,

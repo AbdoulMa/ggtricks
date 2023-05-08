@@ -47,6 +47,9 @@ rather than combining with them.}
 
 \item{...}{other arguments passed on to \code{layer()}.}
 }
+\value{
+A ggplot2 layer.
+}
 \description{
 \code{geom_series_circles()} can be used as an alternative for
 single or multiple bar charts. It consists of using

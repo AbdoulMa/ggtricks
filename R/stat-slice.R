@@ -10,7 +10,7 @@ StatSlice <- ggplot2::ggproto("StatSlice", ggplot2::Stat,
     categorize(data)
   },
   compute_panel = function(data, scales, x0 = 0, y0 = 0, radius = 1, slice_angle = 180, color = "black", init_angle = 0,
-                           slice_position = "top", labels_with_tick = F) {
+                           slice_position = "top", labels_with_tick = FALSE) {
     edges <- 100
     data <- data[data$val > 0, ]
     cat <- data$cat
@@ -54,6 +54,7 @@ StatSlice <- ggplot2::ggproto("StatSlice", ggplot2::Stat,
 #' See  [ggplot2::stat_identity]
 #' @inheritParams geom_slice
 #' @inheritParams ggplot2::stat_identity
+#' @returns A ggplot2 layer.
 #' @export
 stat_slice <- function(mapping = NULL, data = NULL, geom = "slice",
                        position = "identity", show.legend = NA, na.rm = FALSE,

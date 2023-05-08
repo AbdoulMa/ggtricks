@@ -57,7 +57,7 @@ StatSeriesCircles <- ggplot2::ggproto("StatsSeriesCircles", ggplot2::Stat,
     df
     # Data from here is passed to compute_group
   },
-  compute_group = function(data, scales, init_angle = 0, r = .5, x_discrete = T, y_discrete = F) {
+  compute_group = function(data, scales, init_angle = 0, r = .5, x_discrete = TRUE, y_discrete = FALSE) {
     # Convert angle from deg to rad
     init_angle <- init_angle * pi / 180
     # Base R Approach
@@ -115,6 +115,7 @@ StatSeriesCircles <- ggplot2::ggproto("StatsSeriesCircles", ggplot2::Stat,
 #' See  [ggplot2::stat_identity]
 #' @inheritParams geom_series_circles
 #' @inheritParams ggplot2::stat_identity
+#' @returns A ggplot2 layer.
 #' @export
 stat_series_circles <- function(mapping = NULL, data = NULL, geom = "series_circles",
                                 position = "identity", show.legend = NA, na.rm = FALSE,
@@ -158,7 +159,7 @@ StatSeriesText <- ggplot2::ggproto("StatSeriesText", ggplot2::Stat,
     }
     params
   },
-  compute_group = function(data, scales, flip = FALSE, x_discrete = T, y_discrete = F) {
+  compute_group = function(data, scales, flip = FALSE, x_discrete = TRUE, y_discrete = FALSE) {
     val <- ifelse(x_discrete, data$y, data$x)
     val <- val_to_position(val)
 
@@ -181,6 +182,7 @@ StatSeriesText <- ggplot2::ggproto("StatSeriesText", ggplot2::Stat,
 #' See [ggplot2::stat_identity]
 #' @inheritParams geom_series_text
 #' @inheritParams ggplot2::stat_identity
+#' @returns A ggplot2 layer.
 #' @export
 stat_series_text <- function(mapping = NULL, data = NULL, geom = "series_text",
                              position = "identity", show.legend = NA, na.rm = FALSE,

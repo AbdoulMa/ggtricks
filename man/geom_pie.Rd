@@ -20,7 +20,7 @@ geom_pie(
   spotlight_max = FALSE,
   spotlight_cat = NULL,
   spotlight_position = NULL,
-  labels_with_tick = F,
+  labels_with_tick = FALSE,
   labels_family = "",
   labels_size = 5,
   labels_col = "black",
@@ -97,6 +97,9 @@ to \code{TRUE}}
 \item{tick_lwd}{Ticks Size}
 
 \item{...}{other arguments passed on to \code{layer()}.}
+}
+\value{
+A ggplot2 layer.
 }
 \description{
 There are two  arguments absolutely needed in  \code{aes()} mappings:

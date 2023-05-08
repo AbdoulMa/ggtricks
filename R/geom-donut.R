@@ -2,7 +2,7 @@
 draw_panel_function <- function(data, panel_scales, coord,
                                 x0 = 0, y0 = 0,
                                 colour = "black", alpha = 1,
-                                linewidth = .5, labels_col = "black", labels_size = 1, labels_family = "", labels_with_tick = F, tick_lwd = 1, labels_hjust = .5, labels_vjust = .5, labels_fontface = "plain", labels_lineheight = 1.2) {
+                                linewidth = .5, labels_col = "black", labels_size = 1, labels_family = "", labels_with_tick = FALSE, tick_lwd = 1, labels_hjust = .5, labels_vjust = .5, labels_fontface = "plain", labels_lineheight = 1.2) {
   coords <- coord$transform(data, panel_scales)
 
   # Rescale coords to fit
@@ -115,12 +115,13 @@ GeomDonut <- ggplot2::ggproto("GeomDonut", ggplot2::GeomPolygon,
 #'   geom_donut(ggplot2::aes(cat = cat, val = val)) +
 #'   ggplot2::coord_equal()
 #'
+#' @returns A ggplot2 layer.
 #' @export
 geom_donut <- function(mapping = NULL, data = NULL,
                        show.legend = NA,
                        na.rm = FALSE, inherit.aes = TRUE,
                        # For parameters
-                       init_angle = 0, x0 = 0, y0 = 0, r1 = 1, r2 = .65, color = "black", alpha = 1, linewidth = .5, spotlight_max = FALSE, spotlight_cat = NULL, spotlight_position = NULL, labels_with_tick = F,
+                       init_angle = 0, x0 = 0, y0 = 0, r1 = 1, r2 = .65, color = "black", alpha = 1, linewidth = .5, spotlight_max = FALSE, spotlight_cat = NULL, spotlight_position = NULL, labels_with_tick = FALSE,
                        labels_family = "",
                        labels_size = 5,
                        labels_col = "black",

@@ -65,6 +65,9 @@ often aesthetics, used to set an aesthetic to a fixed value, like
 \code{colour = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
 }
+\value{
+A ggplot2 layer.
+}
 \description{
 \code{geom_series_text} is designed to be used in concert with \link{geom_series_circles}.
 It renders the \code{label} mapping to the final position of the series of circles sequence.
@@ -86,6 +89,5 @@ my_df |>
   geom_series_circles(ggplot2::aes(cat, val)) +
   geom_series_text(ggplot2::aes(cat, val, label = cat)) +
   ggplot2::coord_equal()
-
 }
 \keyword{datasets}

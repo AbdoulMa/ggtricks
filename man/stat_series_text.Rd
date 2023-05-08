@@ -63,6 +63,9 @@ often aesthetics, used to set an aesthetic to a fixed value, like
 \code{colour = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
 }
+\value{
+A ggplot2 layer.
+}
 \description{
 See \link[ggplot2:stat_identity]{ggplot2::stat_identity}
 }

@@ -3,9 +3,9 @@ generate_id <- function(group, id, max) max * group + id
 
 group_count <- function(x_discrete, x, y, group) {
   if (x_discrete) {
-    return(tapply(y, group, sum, na.rm = T))
+    return(tapply(y, group, sum, na.rm = TRUE))
   }
-  tapply(x, group, sum, na.rm = T)
+  tapply(x, group, sum, na.rm = TRUE)
 }
 
 # Serie Text

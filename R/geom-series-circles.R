@@ -93,6 +93,7 @@ GeomSeriesCircles <- ggplot2::ggproto("GeomSeriesCircles", ggplot2::GeomPolygon,
 #'   geom_series_circles(ggplot2::aes(cat, val)) +
 #'   ggplot2::coord_equal()
 #'
+#' @returns A ggplot2 layer.
 #' @export
 geom_series_circles <- function(mapping = NULL, data = NULL,
                                 show.legend = NA,
@@ -139,7 +140,7 @@ GeomSeriesText <- ggplot2::ggproto("GeomSeriesText", ggplot2::GeomText)
 #'   geom_series_circles(ggplot2::aes(cat, val)) +
 #'   geom_series_text(ggplot2::aes(cat, val, label = cat)) +
 #'   ggplot2::coord_equal()
-#'
+#' @returns A ggplot2 layer.
 #' @export
 geom_series_text <- function(mapping = NULL, data = NULL,
                              position = "identity", show.legend = NA,

@@ -12,7 +12,7 @@ StatDonut <- ggplot2::ggproto("StatDonut", ggplot2::Stat,
     categorize(data)
   },
   compute_panel = function(data, scales, x0 = 0, y0 = 0, r1 = 1, r2 = 0.75, color = "black", init_angle = 0,
-                           spotlight_cat = NA, spotlight_max = FALSE, spotlight_position = NULL, labels_with_tick = F, cat_is_present = F, cat_index = NA) {
+                           spotlight_cat = NA, spotlight_max = FALSE, spotlight_position = NULL, labels_with_tick = FALSE, cat_is_present = FALSE, cat_index = NA) {
     # ----
 
     # TODO Essayer de voir si on peut récupérer cat_is_present et l'envoyer dans t2xy
@@ -71,6 +71,7 @@ StatDonut <- ggplot2::ggproto("StatDonut", ggplot2::Stat,
 #' See [ggplot2::stat_identity]
 #' @inheritParams geom_donut
 #' @inheritParams ggplot2::stat_identity
+#' @returns A ggplot2 layer.
 #' @export
 stat_donut <- function(mapping = NULL, data = NULL, geom = "donut",
                        position = "identity", show.legend = NA, na.rm = FALSE,

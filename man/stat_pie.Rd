@@ -46,6 +46,9 @@ rather than combining with them.}
 
 \item{...}{other arguments passed on to \code{layer()}.}
 }
+\value{
+A ggplot2 layer.
+}
 \description{
 See \link[ggplot2:stat_identity]{ggplot2::stat_identity}
 }
