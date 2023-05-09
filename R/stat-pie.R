@@ -2,7 +2,6 @@
 #' See [ggplot2::Geom]
 #' @format NULL
 #' @usage NULL
-#' @RE
 #' @export
 StatPie <- ggplot2::ggproto("StatPie", ggplot2::Stat,
   setup_params = function(data, params) {
