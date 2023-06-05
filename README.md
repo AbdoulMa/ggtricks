@@ -324,7 +324,7 @@ my_df |>
 ### `geom_donut`
 
 Donut is just pie with a hole in it. There are two parameters `r1` and
-`r2` to define thickness of the donut.
+`r2` to define the thickness of the donut.
 
 ``` r
 my_df |>
@@ -459,8 +459,8 @@ Of course, you shouldn’t edit the default `ratio = 1` that ensures that
 one unit on `x-axis` is the same length as one unit on the `y-axis`.
 
 When using `geom_series_circles()`, the desire will come one day to
-combine it with `facet_wrap()` or `facet_grid` or any faceting function,
-**you should not**, or not the way you envision.
+combine it with `facet_wrap()` or `facet_grid()` or any faceting
+function, **you should not**, or not the way you envision.
 
 Since we are using `coord_equal()`, you won’t be able to set `scales`
 parameter, which I strongly suspect you to try to do. So for the moment,
