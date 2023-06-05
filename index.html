@@ -341,7 +341,7 @@
 <h3 id="geom_donut">
 <code>geom_donut</code><a class="anchor" aria-label="anchor" href="#geom_donut"></a>
 </h3>
-<p>Donut is just pie with a hole in it. There are two parameters <code>r1</code> and <code>r2</code> to define thickness of the donut.</p>
+<p>Donut is just pie with a hole in it. There are two parameters <code>r1</code> and <code>r2</code> to define the thickness of the donut.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_df</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -449,7 +449,7 @@
 <p>the physical representation of data units on the axes.</p>
 </blockquote>
 <p>according to the official <a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">documentation</a>. Of course, you shouldn’t edit the default <code>ratio = 1</code> that ensures that one unit on <code>x-axis</code> is the same length as one unit on the <code>y-axis</code>.</p>
-<p>When using <code><a href="reference/geom_series_circles.html">geom_series_circles()</a></code>, the desire will come one day to combine it with <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap()</a></code> or <code>facet_grid</code> or any faceting function, <strong>you should not</strong>, or not the way you envision.</p>
+<p>When using <code><a href="reference/geom_series_circles.html">geom_series_circles()</a></code>, the desire will come one day to combine it with <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">facet_grid()</a></code> or any faceting function, <strong>you should not</strong>, or not the way you envision.</p>
 <p>Since we are using <code><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_equal()</a></code>, you won’t be able to set <code>scales</code> parameter, which I strongly suspect you to try to do. So for the moment, I advise you not to do so. However, I will provide some tips to go through those restrictions on package website <a href="https://abdoulma.github.io/ggtricks/" class="uri">https://abdoulma.github.io/ggtricks/</a></p>
 </div>
 <div class="section level2">
