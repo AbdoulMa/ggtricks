@@ -324,7 +324,7 @@ my_df |>
 
 ![](man/figures/donuts_facets_montage.png)
 
-All others parameters available for `geom_pie` are also here. 
+All others parameters available for `geom_pie` are available also here. 
 
 ###  `geom_slice`
 
