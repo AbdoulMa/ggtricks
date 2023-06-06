@@ -274,10 +274,10 @@ positions](man/figures/pie_facets_spotlight_max_montage.png)
 - `spotlight_cat`
 
 Maybe, you want a specific category to drive the slices positions rather
-than the category with the maximum value ? Then come the `spotlight_cat`
-parameter to define the driving category. Also here you can combine the
-`spotlight_cat` parameter value with `spotlight_position` to specify its
-position.
+than the category with the maximum value ? This is where comes the
+`spotlight_cat` parameter to define the driving category. Also here you
+can combine the `spotlight_cat` parameter value with
+`spotlight_position` to specify its position.
 
 ``` r
 my_df |>
